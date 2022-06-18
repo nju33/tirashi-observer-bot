@@ -1,0 +1,4 @@
+**/**
+!projects/tirashi-observer-bot/src/*.ts
+!*.ts
+!appsscript.json
