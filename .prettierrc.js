@@ -1,0 +1,1 @@
+module.exports = require('@aryli/create-that.prettier.config').config
