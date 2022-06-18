@@ -1,9 +1,11 @@
 /**
  * Initialize the script properties of a GAS script
- * 
- * @param event When executing `clasp run` with `—params`, to be an object is containing `params`
+ *
+ * @param event - When executing `clasp run` with `—params`, to be an object is containing `params`
  */
-function _initScriptProperties(event?: {params?: {TIRASHI_URL?: string}}) {
+function _initScriptProperties(event?: {
+    params?: { TIRASHI_URL?: string }
+}): string | undefined {
     if (event?.params?.TIRASHI_URL == null) {
         return
     }
