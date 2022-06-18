@@ -1,6 +1,6 @@
 # Tirashi Observer Bot
 
-Tirashi Observer is a bot by GAS. This can observe that you want to search words from flyers with.
+Tirashi Observer is a bot by GAS: this can observe that you want to search words from given flyers.
 
 ## Dependencies
 
@@ -14,10 +14,13 @@ sequenceDiagram
 participant Cron as cron-job.org
 participant GAS as Google Apps Script
 
-Cron -) GAS: Fire `doGet`
-Note over Cron, GAS: Everyday around 1 a.m.
+loop Everyday around 1 a.m.
+    Cron -) GAS: Fire `doGet`
 
-GAS -) Line: Send a message about<br />whether the flyer contains words that you want
+    opt Flyers contains some kind of registerd word
+        GAS -) Line: Send a message about<br />whether the flyer contains words that you want
+    end
+end
 ```
 
 ## Usecases
