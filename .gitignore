@@ -1,6 +1,6 @@
 projects/*/*
 !projects/*/.gitkeep
-!projects/src
+!projects/**/*.ts
 properties.ts
 .clasprc.json
 creds.json
