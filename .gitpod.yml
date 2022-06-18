@@ -19,7 +19,7 @@ tasks:
       command: |
           .gitpod/command.sh
 
-          rclone mount --allow-non-empty drive:/workspace/gitpod/tirashi-observer-bot "${GITPOD_REPO_ROOT}/projects/$(basename "$GITPOD_REPO_ROOT")"
+          rclone mount --allow-non-empty drive:/workspace/gitpod/tirashi-observer-bot "${GITPOD_REPO_ROOT}/projects/$(basename "$GITPOD_REPO_ROOT")" --daemon
 
 vscode:
     extensions:
