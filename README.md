@@ -112,6 +112,7 @@ This project is depending on [Jest](https://jestjs.io/) testing framework.
 
 1. `mv .jest/setup-process-env.js.sample .jest/setup-process-env.js`
 2. Open it, then put `LINE_TOKEN`
+3. run `yarn build`. If you are VSCode user, It’s also ok that run VSCode's build task(by `cmd+shift+b`)
 
 Some test cases are having `.skip`. This is preventing to send a actual request to another.
 
