@@ -48,6 +48,10 @@ This project is using `yarn@berry` as a package manager; also, the workspace fea
 └── README.md
 ```
 
+This project doesn't actually have such as `.clasp.json`. That's because, It doesn't exist that the way to hide a secret values.
+
+As a solution of this, actually in my local, mounting `/projects/tirashi-observer-bot/`. Then all of files in the bellow here is synced with one from cloud storage. (In short, such as `.clasp.json` exists on the cloud storage)
+
 ## Preparing Workspace
 
 ```bash
