@@ -1,3 +1,4 @@
+/.firebase
 /.jest/setup-process-env.js
 /out
 projects/tirashi-observer-bot/*
