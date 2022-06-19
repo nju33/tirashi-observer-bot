@@ -1,0 +1,250 @@
+{
+    "messages": [
+        {
+            "type": "flex",
+            "altText": "List of registered words",
+            "contents": {
+                "type": "carousel",
+                "contents": [
+                    {
+                        "type": "bubble",
+                        "header": {
+                            "type": "box",
+                            "layout": "horizontal",
+                            "alignItems": "center",
+                            "height": "80px",
+                            "contents": [
+                                {
+                                    "type": "text",
+                                    "size": "sm",
+                                    "color": "#666666",
+                                    "text": "ワードをタップ（クリック）すると再び有効、もしくは無効にできます。",
+                                    "wrap": true
+                                }
+                            ]
+                        },
+                        "body": {
+                            "type": "box",
+                            "layout": "vertical",
+                            "spacing": "sm",
+                            "contents": [
+                                {
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "backgroundColor": "#eeeeee",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "Reactivate",
+                                        "data": "{}",
+                                        "displayText": "Reactivate キャベツ"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-on.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "キャベツ",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "Reactivate",
+                                        "data": "{}",
+                                        "displayText": "Reactivate キャベツ"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-off.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "キャベツ",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "backgroundColor": "#eeeeee",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "Reactivate",
+                                        "data": "{}",
+                                        "displayText": "Reactivate キャベツ"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-on.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "キャベツ",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "type": "bubble",
+                        "header": {
+                            "type": "box",
+                            "layout": "horizontal",
+                            "height": "80px",
+                            "contents": []
+                        },
+                        "body": {
+                            "type": "box",
+                            "layout": "vertical",
+                            "spacing": "sm",
+                            "contents": [
+                                {
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "backgroundColor": "#eeeeee",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "Reactivate",
+                                        "data": "{}",
+                                        "displayText": "Reactivate キャベツ"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-on.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "キャベツ",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "Reactivate",
+                                        "data": "{}",
+                                        "displayText": "Reactivate キャベツ"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-off.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "キャベツ",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "backgroundColor": "#eeeeee",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "Reactivate",
+                                        "data": "{}",
+                                        "displayText": "Reactivate キャベツ"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-on.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "キャベツ",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}

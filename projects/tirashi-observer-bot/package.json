@@ -1,0 +1,13 @@
+{
+    "name": "tirashi-observer-bot",
+    "version": "0.0.0",
+    "main": "index.js",
+    "license": "MIT",
+    "scripts": {
+        "props.init": "clasp run _initScriptProperties --params",
+        "sheets.init": "clasp run _initSheets --params",
+        "push": "clasp push",
+        "deploy": "clasp deploy",
+        "open": "clasp open"
+    }
+}

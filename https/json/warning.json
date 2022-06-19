@@ -1,0 +1,50 @@
+{
+    "messages": [
+        {
+            "type": "flex",
+            "altText": "It cannot has been that to list your registered words because there is no data.",
+            "contents": {
+                "type": "bubble",
+                "body": {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                        {
+                            "type": "box",
+                            "layout": "vertical",
+                            "height": "80px",
+                            "justifyContent": "center",
+                            "alignItems": "center",
+                            "contents": [
+                                {
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/circle-exclamation.png",
+                                            "size": "55px"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "box",
+                            "layout": "vertical",
+                            "alignItems": "center",
+                            "paddingAll": "sm",
+                            "contents": [
+                                {
+                                    "type": "text",
+                                    "text": "It cannot has been that to list your registered words because there is no data.",
+                                    "wrap": true
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        }
+    ]
+}

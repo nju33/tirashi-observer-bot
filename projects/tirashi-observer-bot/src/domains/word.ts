@@ -1,17 +1,21 @@
-interface Word extends ValueObject {
+interface Word {
     value: string
     active: boolean
 }
 
-function createWord(value: string): Readonly<Word> {
+function reconstructWord(value: string, active: boolean): Word {
+    return Object.freeze({ value, active })
+}
+
+function constructWord(value: string): Readonly<Word & ToSheetValue> {
     return Object.freeze({
         value,
         active: true,
-        toArray(): [string, boolean] {
+        toSheetValue() {
             return [this.value, this.active]
         },
         toString(): string {
-            return this.toArray().join(',')
+            return this.toSheetValue()?.join(',')
         }
     })
 }

@@ -1,0 +1,50 @@
+{
+    "messages": [
+        {
+            "type": "flex",
+            "altText": "Your words has been successfully registered!",
+            "contents": {
+                "type": "bubble",
+                "body": {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                        {
+                            "type": "box",
+                            "layout": "vertical",
+                            "height": "80px",
+                            "justifyContent": "center",
+                            "alignItems": "center",
+                            "contents": [
+                                {
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/circle-check.png",
+                                            "size": "55px"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "box",
+                            "layout": "vertical",
+                            "alignItems": "center",
+                            "paddingAll": "sm",
+                            "contents": [
+                                {
+                                    "type": "text",
+                                    "text": "Your words has been successfully registered!",
+                                    "wrap": true
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        }
+    ]
+}

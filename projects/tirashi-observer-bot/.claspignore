@@ -1,4 +1,5 @@
 **/**
-!projects/tirashi-observer-bot/src/*.ts
+!projects/tirashi-observer-bot/src/**/*.ts
+projects/tirashi-observer-bot/src/**/*.test.ts
 !*.ts
 !appsscript.json

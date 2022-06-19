@@ -1,0 +1,13 @@
+// Success message
+// https://cloud.nju33.com/2H6lgqBYQoTmHXDQS4iu
+
+@token = {{$dotenv %LINE_TOKEN}}
+@endpoint = https://api.line.me/v2/bot/message/broadcast
+
+###
+
+POST {{endpoint}} HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+< ./json/list-line-message.json

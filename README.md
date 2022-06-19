@@ -48,6 +48,12 @@ This project is using `yarn@berry` as a package manager; also, the workspace fea
 └── README.md
 ```
 
+## Preparing Workspace
+
+```bash
+yarn
+```
+
 ## Preparing GAS
 
 1. Install GAS
@@ -68,3 +74,85 @@ This project is using `yarn@berry` as a package manager; also, the workspace fea
          --params '{"TIRASHI_URL": "url1,url2,..."}'
        ```
         If you want to search words from multiple flyers, you can specify a value separeting `,`
+
+## Hosting
+
+This project makes very small use of the hosting feature of Firebase. It is for using icon in a Line message.
+
+Its preparing is the following.
+
+```bash
+# Install Firebase
+npm install --location=global firebase-tools
+
+# Login to Firebase, and set FIREBASE_TOKEN for using firebase-cli features.
+firebase login:cli
+# ... prints the token
+export FIREBASE_TOKEN=<Paste the above token>
+
+# Deploy
+firebase deploy
+```
+
+`/public/` directory is the root of the hosting.
+
+### Icons
+
+Icons is placed on the `/public/tinified/`; also, all of icons (png) were minified by https://tinypng.com/.
+
+## Test
+
+This project is depending on [Jest](https://jestjs.io/) testing framework.
+
+### Setup
+
+1. `mv .jest/setup-process-env.js.sample .jest/setup-process-env.js`
+2. Open it, then put `LINE_TOKEN`
+
+Some test cases are having `.skip`. This is preventing to send a actual request to another.
+
+If testing them, remove it first before you run `yarn test`; also, you reattach `.skip` to one when finished before `git push`.
+
+## Classes
+
+```mermaid
+classDiagram
+
+class LineMessage {
+    +Success(memssage: string)$
+    +Warning(message: string)$
+    +Error(message: string)$
+}
+
+class ListLineMessage {
+    +create(words: Word[])
+}
+
+class Repository~T~ {
+    <<interface>>
+    insert(item~T~)
+    list()
+    delete(item~T~)
+}
+
+class UseCase
+<<interface>> UseCase
+
+class ToSheetValue {
+    <<interface>>
+    +toArray() any[]
+    +toString()
+}
+
+class Word {
+    <<interface>>
+    +value: string
+    +active: boolean
+}
+
+
+Repository <|.. WordSheet
+Repository "n" o-- "1" UseCase
+ToSheetValue <|-- Word
+Word "1..n" <.. "1" ListLineMessage
+```

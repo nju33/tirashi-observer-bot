@@ -15,7 +15,10 @@ tasks:
           git submodule update --init
 
           .gitpod/before.sh
-      init: .gitpod/init.sh
+      init: |
+          .gitpod/init.sh
+
+          npm install --location=global firebase-tools
       command: |
           .gitpod/command.sh
 
@@ -31,3 +34,10 @@ vscode:
         - ExodiusStudios.comment-anchors
         - mikestead.dotenv
         - github.vscode-pull-request-github
+        - formulahendry.code-runner
+        - bierner.markdown-preview-github-styles
+        - bierner.markdown-mermaid
+        - humao.rest-client
+        - foxundermoon.shell-format
+        - Orta.vscode-jest
+        - christian-kohler.path-intellisense

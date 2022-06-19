@@ -1,0 +1,50 @@
+{
+    "messages": [
+        {
+            "type": "flex",
+            "altText": "Deleting your registered words has been failred for the some reason.",
+            "contents": {
+                "type": "bubble",
+                "body": {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                        {
+                            "type": "box",
+                            "layout": "vertical",
+                            "height": "80px",
+                            "justifyContent": "center",
+                            "alignItems": "center",
+                            "contents": [
+                                {
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/circle-x.png",
+                                            "size": "55px"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "box",
+                            "layout": "vertical",
+                            "alignItems": "center",
+                            "paddingAll": "sm",
+                            "contents": [
+                                {
+                                    "type": "text",
+                                    "text": "Deleting your registered words has been failred for the some reason.",
+                                    "wrap": true
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        }
+    ]
+}

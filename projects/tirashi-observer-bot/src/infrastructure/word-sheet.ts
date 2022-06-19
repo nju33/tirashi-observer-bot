@@ -4,12 +4,13 @@ class WordSheet implements WordRepository {
         const lastRow = sheet.getLastRow()
         const insertingValues = word.toArray()
 
-        sheet.getRange(lastRow + 1, insertingValues.length).setValues(insertingValues)
+        sheet
+            .getRange(lastRow + 1, insertingValues.length)
+            .setValues(insertingValues as any)
     }
 
     delete(word: Word): void {
         const sheet = this.getSheet()
-        const 
     }
 
     private getSheet(): GoogleAppsScript.Spreadsheet.Sheet {
@@ -22,6 +23,5 @@ class WordSheet implements WordRepository {
         }
 
         return sheet
-    }
     }
 }
