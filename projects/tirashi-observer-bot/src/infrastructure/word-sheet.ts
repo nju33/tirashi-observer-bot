@@ -38,7 +38,7 @@ class WordSheet implements WordRepository {
     }
 
     private getSheet(): GoogleAppsScript.Spreadsheet.Sheet {
-        const sheetName = 'Word'
+        const sheetName = 'Words'
         const spreadsheet = SpreadsheetApp.getActive()
         const sheet = spreadsheet.getSheetByName(sheetName)
 

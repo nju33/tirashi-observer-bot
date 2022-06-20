@@ -14,12 +14,16 @@ class InfrastructureError extends Error {
     }
 
     static WordDoesNotExist(wordValue: string): InfrastructureError {
-        return new InfrastructureError(`「${wordValue}」は未登録です。`)
+        return new InfrastructureError(
+            `「${wordValue}」は未登録です。`,
+            'WordDoesNotExist'
+        )
     }
 
     static SheetDoesNotExist(sheetName: string): InfrastructureError {
         return new InfrastructureError(
-            `「${sheetName}」は存在しないシート名です。`
+            `「${sheetName}」は存在しないシート名です。`,
+            'SheetDoesNotExist'
         )
     }
 }

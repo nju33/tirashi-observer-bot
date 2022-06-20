@@ -10,14 +10,20 @@ function doPost(
 
     if (isLineMessageEvent(event)) {
         const message = event.message.text
-        chat(
-            message,
-            event.replyToken,
-            replyMessages,
-            new WordSheet(),
-            wordActionMessage,
-            gasProperties
-        )
+        try {
+            chat(
+                message,
+                event.replyToken,
+                replyMessages,
+                new WordSheet(),
+                wordActionMessage,
+                gasProperties
+            )
+        } catch (error) {
+            return ContentService.createTextOutput(
+                `error: ${(error as Error).message}`
+            )
+        }
     }
 
     // if (parameter.type === EVENT_TYPES.activateWord) {
