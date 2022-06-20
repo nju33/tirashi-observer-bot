@@ -5,7 +5,8 @@
     ],
     "scripts": {
         "build": "tsc",
-        "test": "jest"
+        "test": "jest",
+        "bot:": "yarn workspace tirashi-observer-bot"
     },
     "devDependencies": {
         "@aryli/create-that.preset": "0.0.5",
@@ -14,6 +15,7 @@
         "@types/rewire": "^2.5.28",
         "axios": "^0.27.2",
         "jest": "^28.1.1",
+        "npm-run-all": "^4.1.5",
         "rewire": "^6.0.0",
         "ts-jest": "^28.0.5",
         "type-fest": "^2.13.1",

@@ -17,11 +17,11 @@ describe('ListLineMessage', () => {
     let lineMessageModule: ReturnType<typeof rewire>
 
     beforeAll(() => {
-        const postbackModule = rewire(
-            '../../../../out/projects/tirashi-observer-bot/src/postback'
+        const eventModule = rewire(
+            '../../../../out/projects/tirashi-observer-bot/src/event'
         )
-        const postbackTypes =
-            postbackModule.__get__<typeof POSTBACK_TYPES>('POSTBACK_TYPES')
+        const eventTypes =
+            eventModule.__get__<typeof EVENT_TYPES>('EVENT_TYPES')
         instance = axios.create({
             headers: {
                 'Content-Type': 'application/json',
@@ -32,7 +32,7 @@ describe('ListLineMessage', () => {
         lineMessageModule = rewire(
             '../../../../out/projects/tirashi-observer-bot/src/presentation/list-line-message'
         )
-        lineMessageModule.__set__('_POSTBACK_TYPES', postbackTypes)
+        lineMessageModule.__set__('_EVENT_TYPES', eventTypes)
     })
 
     it.skip('properly send to list words message', async () => {

@@ -20,4 +20,9 @@ function constructWord(value: string): Readonly<Word & ToSheetValue> {
     })
 }
 
-type WordRepository = Repository<Word>
+interface WordRepository {
+    get: (value: string) => string[]
+    has: (value: string) => boolean
+    insert: (value: Word & ToSheetValue) => void
+    delete: (value: Word) => void
+}

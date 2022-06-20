@@ -1,0 +1,55 @@
+{
+    "messages": [
+        {
+            "type": "text",
+            "text": "$ 「キャベツ」",
+            "emojis": [
+                {
+                    "index": 0,
+                    "productId": "5ac21a8c040ab15980c9b43f",
+                    "emojiId": "100"
+                }
+            ],
+            "quickReply": {
+                "items": [
+                    {
+                        "type": "action",
+                        "imageUrl": "https://tirashi-observer-bot.web.app/tinified/circle-plus.png",
+                        "action": {
+                            "type": "message",
+                            "label": "...を登録",
+                            "text": "「キャベツ」を登録"
+                        }
+                    },
+                    {
+                        "type": "action",
+                        "imageUrl": "https://tirashi-observer-bot.web.app/tinified/toggle-on.png",
+                        "action": {
+                            "type": "message",
+                            "label": "...を有効化",
+                            "text": "「キャベツ」を有効化"
+                        }
+                    },
+                    {
+                        "type": "action",
+                        "imageUrl": "https://tirashi-observer-bot.web.app/tinified/toggle-off.png",
+                        "action": {
+                            "type": "message",
+                            "label": "...を無効化",
+                            "text": "「キャベツ」を無効化"
+                        }
+                    },
+                    {
+                        "type": "action",
+                        "imageUrl": "https://tirashi-observer-bot.web.app/tinified/delete-right.png",
+                        "action": {
+                            "type": "message",
+                            "label": "...を削除",
+                            "text": "「キャベツ」を削除"
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}

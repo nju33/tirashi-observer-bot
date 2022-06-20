@@ -9,8 +9,16 @@ module.exports = {
         {
             files: '**/*.ts',
             rules: {
-                'unused-imports/no-unused-vars': 'off'
-                // because  `eslint-disable` comments is deleted after you run `clasp pull`
+                'unused-imports/no-unused-vars': 'off',
+                // ^ because `eslint-disable` comments is deleted after you run `clasp pull`
+
+                // allows me to use `word.toString()`
+                '@typescript-eslint/no-base-to-string': [
+                    'error',
+                    {
+                        ignoredTypeNames: ['Word']
+                    }
+                ]
             }
         }
     ]

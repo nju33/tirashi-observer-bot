@@ -1,10 +1,10 @@
 type CreateParameter = Parameters<ListLineMessage['create']>[0]
 type CreateReturnType = ReturnType<ListLineMessage['create']>
 
-// To access POSTBACK_TYPES
-let _POSTBACK_TYPES: typeof POSTBACK_TYPES | undefined
-if (typeof POSTBACK_TYPES !== 'undefined') {
-    _POSTBACK_TYPES = POSTBACK_TYPES
+// To also access EVENT_TYPES in tests
+let _EVENT_TYPES: typeof EVENT_TYPES | undefined
+if (typeof EVENT_TYPES !== 'undefined') {
+    _EVENT_TYPES = EVENT_TYPES
 }
 
 function sliceWords<T>(words: T[]): T[][] {
@@ -41,14 +41,14 @@ function createDisplayText(word: CreateParameter[0]): string {
     return `${word.value}を無効にします。`
 }
 
-function createPayload(word: CreateParameter[0]): string {
+function createData(word: CreateParameter[0]): string {
     /* eslint-disable @typescript-eslint/no-non-null-assertion */
     const type = word.active
-        ? _POSTBACK_TYPES!.inactivate
-        : _POSTBACK_TYPES!.activate
+        ? _EVENT_TYPES!.inactivateWord
+        : _EVENT_TYPES!.activateWord
     /* eslint-enable @typescript-eslint/no-non-null-assertion */
 
-    return JSON.stringify({ type, word })
+    return JSON.stringify({ type, payload: { word } })
 }
 
 function createToggleIconContent(
@@ -75,7 +75,7 @@ function createLine(
         type: 'postback',
         label: createLabel(word),
         displayText: createDisplayText(word),
-        data: createPayload(word)
+        data: createData(word)
     }
     const lineText = {
         type: 'text',
@@ -146,7 +146,7 @@ function createBubble(
     }
 }
 
-const listLineMessage: ListLineMessage = Object.freeze({
+const listLineMessage: ListLineMessage = {
     create(
         words: Parameters<ListLineMessage['create']>[0]
     ): import('type-fest').JsonObject {
@@ -170,4 +170,4 @@ const listLineMessage: ListLineMessage = Object.freeze({
             ]
         }
     }
-})
+}

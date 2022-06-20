@@ -8,6 +8,7 @@
         "sheets.init": "clasp run _initSheets --params",
         "push": "clasp push",
         "deploy": "clasp deploy",
+        "deployments": "clasp deployments",
         "open": "clasp open"
     }
 }
