@@ -3,7 +3,7 @@
     "workspaces": [
         "projects/*"
     ],
-    "script": {
+    "scripts": {
         "build": "tsc",
         "test": "jest"
     },
