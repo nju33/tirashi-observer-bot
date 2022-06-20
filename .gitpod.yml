@@ -19,6 +19,7 @@ tasks:
           .gitpod/init.sh
 
           npm install --location=global firebase-tools
+          yarn
       command: |
           .gitpod/command.sh
 
