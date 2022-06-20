@@ -48,9 +48,9 @@ This project is using `yarn@berry` as a package manager; also, the workspace fea
 └── README.md
 ```
 
-This project doesn't actually have such as `.clasp.json`. That's because, It doesn't exist that the way to hide a secret values.
+This project doesn't actually have such as `.clasp.json`. That's because It doesn't exist that way to hide secret values.
 
-As a solution of this, actually in my local, mounting `/projects/tirashi-observer-bot/`. Then all of files in the bellow here is synced with one from cloud storage. (In short, such as `.clasp.json` exists on the cloud storage)
+As a solution to this, actually in my local, mounting `/projects/tirashi-observer-bot/` with my cloud storage. Then all of the files below here are synced with one from the cloud storage. (In short, such as `.clasp.json` exists on the cloud storage)
 
 ## Preparing Workspace
 
@@ -69,7 +69,7 @@ yarn
 3. Setup a GAS project running `clasp create --rootDir projects/tirashi-observer-bot` or `clasp clone <scriptId> --rootDir projects/tirashi-observer-bot`, and then
     1. Add `projectId` into the `.clasp.json`  
        (In command, run `clasp setting projectId <projectId>` on the `tirashi-observer-bot/`)
-    2. Register the number of the same project from the the settings page of the script editor. (You can open the script editor by `clasp open`)  
+    2. Register the number of the same project from the settings page of the script editor. (You can open the script editor by `clasp open`)  
        ![](https://cloud.nju33.com/eXx2280ZyFwQSsOwwTXf+)
 4. Setup the script properties.
     1. `cd projects/tirashi-observer-bot`
@@ -77,13 +77,13 @@ yarn
        clasp run _initScriptProperties \
          --params '{"TIRASHI_URL": "url1,url2,..."}'
        ```
-        If you want to search words from multiple flyers, you can specify a value separeting `,`
+        If you want to search words from multiple flyers, you can specify a value separated by `,`.
 
 ## Hosting
 
-This project makes very small use of the hosting feature of Firebase. It is for using icon in a Line message.
+This project makes very small use of the hosting feature of Firebase. It is for using icons in a Line message.
 
-Its preparing is the following.
+Its preparation is the following.
 
 ```bash
 # Install Firebase
@@ -102,7 +102,7 @@ firebase deploy
 
 ### Icons
 
-Icons is placed on the `/public/tinified/`; also, all of icons (png) were minified by https://tinypng.com/.
+Icons are placed on the `/public/tinified/`; also, all of the icons (png) were minified by https://tinypng.com/.
 
 ## Test
 
@@ -112,9 +112,9 @@ This project is depending on [Jest](https://jestjs.io/) testing framework.
 
 1. `mv .jest/setup-process-env.js.sample .jest/setup-process-env.js`
 2. Open it, then put `LINE_TOKEN`
-3. run `yarn build`. If you are VSCode user, It’s also ok that run VSCode's build task(by `cmd+shift+b`)
+3. run `yarn build`. If you are a VSCode user, It’s also ok that run VSCode's build task(by `cmd+shift+b`)
 
-Some test cases are having `.skip`. This is preventing to send a actual request to another.
+Some test cases are having `.skip`. This is preventing sending an actual request to another.
 
 If testing them, remove it first before you run `yarn test`; also, you reattach `.skip` to one when finished before `git push`.
 

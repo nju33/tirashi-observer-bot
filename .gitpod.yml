@@ -42,3 +42,4 @@ vscode:
         - foxundermoon.shell-format
         - Orta.vscode-jest
         - christian-kohler.path-intellisense
+        - znck.grammarly

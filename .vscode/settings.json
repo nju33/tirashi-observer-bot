@@ -69,5 +69,6 @@
     "jake.autoDetect": "off",
     "gulp.autoDetect": "off",
     "npm.autoDetect": "on",
-    "eslint.lintTask.enable": false
+    "eslint.lintTask.enable": false,
+    "grammarly.files.include": ["**/README.md"]
 }
