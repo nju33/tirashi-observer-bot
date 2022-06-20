@@ -7,7 +7,7 @@ function _initScriptProperties(event?: {
     params?: { LINE_TOKEN?: string; TIRASHI_URL?: string }
 }): any {
     if (event?.params?.LINE_TOKEN != null) {
-        // If there is more than one, separate them with `,`.
+        // The token of a Line channel
         PropertiesService.getScriptProperties().setProperty(
             'LINE_TOKEN',
             event?.params?.LINE_TOKEN
