@@ -20,7 +20,4 @@ function constructWord(value: string): Readonly<Word & ToSheetValue> {
     })
 }
 
-interface WordRepository {
-    insert: (word: Word) => void
-    delete: (word: Word) => void
-}
+type WordRepository = Repository<Word>

@@ -7,7 +7,6 @@ describe('LineMessage', () => {
 
     beforeAll(() => {
         instance = axios.create({
-            baseURL: 'https://api.line.me/v2/bot/message/broadcast',
             headers: {
                 'Content-Type': 'application/json',
                 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion

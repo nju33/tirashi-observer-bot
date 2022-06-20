@@ -1,4 +1,4 @@
-interface Repository<T> {
-    insert: (object: T) => void
-    delete: (object: T) => void
+interface Repository<T = {}> {
+    insert: (object: T & ToSheetValue) => void
+    delete: (object: T & ToSheetValue) => void
 }

@@ -1,15 +1,15 @@
 class WordSheet implements WordRepository {
-    insert(word: Word): void {
+    insert(word: Parameters<WordRepository['insert']>[0]): void {
         const sheet = this.getSheet()
         const lastRow = sheet.getLastRow()
-        const insertingValues = word.toArray()
+        const insertingValues = word.toSheetValue()
 
         sheet
             .getRange(lastRow + 1, insertingValues.length)
             .setValues(insertingValues as any)
     }
 
-    delete(word: Word): void {
+    delete(word: Parameters<WordRepository['delete']>[0]): void {
         const sheet = this.getSheet()
     }
 

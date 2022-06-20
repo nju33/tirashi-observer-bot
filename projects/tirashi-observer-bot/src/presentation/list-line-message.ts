@@ -1,11 +1,15 @@
-import type { JsonValue } from 'type-fest'
+type CreateParameter = Parameters<ListLineMessage['create']>[0]
+type CreateReturnType = ReturnType<ListLineMessage['create']>
 
-// eslint-disable-next-line @typescript-eslint/consistent-type-definitions
-type ToString = { toString: () => string }
+// To access POSTBACK_TYPES
+let _POSTBACK_TYPES: typeof POSTBACK_TYPES | undefined
+if (typeof POSTBACK_TYPES !== 'undefined') {
+    _POSTBACK_TYPES = POSTBACK_TYPES
+}
 
-function sliceWords(words: ToString[]): ToString[][] {
+function sliceWords<T>(words: T[]): T[][] {
     const max = Math.ceil(words.length / 10)
-    const result: ToString[][] = []
+    const result: T[][] = []
 
     let current = 0
 
@@ -21,10 +25,89 @@ function sliceWords(words: ToString[]): ToString[][] {
     return result
 }
 
+function createLabel(word: CreateParameter[0]): string {
+    if (word.active) {
+        return '有効化'
+    }
+
+    return '無効化'
+}
+
+function createDisplayText(word: CreateParameter[0]): string {
+    if (word.active) {
+        return `${word.value}を有効にします。`
+    }
+
+    return `${word.value}を無効にします。`
+}
+
+function createPayload(word: CreateParameter[0]): string {
+    /* eslint-disable @typescript-eslint/no-non-null-assertion */
+    const type = word.active
+        ? _POSTBACK_TYPES!.inactivate
+        : _POSTBACK_TYPES!.activate
+    /* eslint-enable @typescript-eslint/no-non-null-assertion */
+
+    return JSON.stringify({ type, word })
+}
+
+function createToggleIconContent(
+    word: CreateParameter[0]
+): import('type-fest').JsonObject {
+    const toggleIcon = word.active
+        ? 'https://tirashi-observer-bot.web.app/tinified/toggle-on.png'
+        : 'https://tirashi-observer-bot.web.app/tinified/toggle-off.png'
+
+    return {
+        type: 'icon',
+        url: toggleIcon,
+        size: '24px',
+        offsetTop: '3px'
+    }
+}
+
+function createLine(
+    word: CreateParameter[0],
+    isOdd: boolean
+): CreateReturnType {
+    const oddProperties = isOdd ? { backgroundColor: '#eeeeee' } : {}
+    const action = {
+        type: 'postback',
+        label: createLabel(word),
+        displayText: createDisplayText(word),
+        data: createPayload(word)
+    }
+    const lineText = {
+        type: 'text',
+        offsetTop: '-3px',
+        contents: [
+            {
+                type: 'span',
+                text: word.value,
+                weight: 'bold'
+            }
+        ],
+        wrap: true
+    }
+
+    return {
+        ...oddProperties,
+        type: 'box',
+        layout: 'baseline',
+        paddingAll: 'lg',
+        action,
+        spacing: 'md',
+        contents: [createToggleIconContent(word), lineText]
+    }
+}
+
 /**
  * Create line bubble component for list
  */
-function createBubble(words: ToString[], isFirst: boolean): JsonValue {
+function createBubble(
+    words: CreateParameter,
+    isFirst: boolean
+): CreateReturnType {
     const header = isFirst
         ? {
               type: 'box',
@@ -47,6 +130,9 @@ function createBubble(words: ToString[], isFirst: boolean): JsonValue {
               height: '80px',
               contents: []
           }
+    const contents = words.map((word, i) => {
+        return createLine(word, (i + 1) % 2 > 0)
+    })
 
     return {
         type: 'bubble',
@@ -55,112 +141,33 @@ function createBubble(words: ToString[], isFirst: boolean): JsonValue {
             type: 'box',
             layout: 'vertical',
             spacing: 'sm',
-            contents: [
-                {
-                    type: 'box',
-                    layout: 'baseline',
-                    backgroundColor: '#eeeeee',
-                    paddingAll: 'lg',
-                    action: {
-                        type: 'postback',
-                        label: 'Reactivate',
-                        data: '{}',
-                        displayText: 'Reactivate キャベツ'
-                    },
-                    spacing: 'md',
-                    contents: [
-                        {
-                            type: 'icon',
-                            url: 'https://tirashi-observer-bot.web.app/tinified/toggle-on.png',
-                            size: '24px',
-                            offsetTop: '3px'
-                        },
-                        {
-                            type: 'text',
-                            offsetTop: '-3px',
-                            contents: [
-                                {
-                                    type: 'span',
-                                    text: 'キャベツ',
-                                    weight: 'bold'
-                                }
-                            ],
-                            wrap: true
-                        }
-                    ]
-                },
-                {
-                    type: 'box',
-                    layout: 'baseline',
-                    paddingAll: 'lg',
-                    action: {
-                        type: 'postback',
-                        label: 'Reactivate',
-                        data: '{}',
-                        displayText: 'Reactivate キャベツ'
-                    },
-                    spacing: 'md',
-                    contents: [
-                        {
-                            type: 'icon',
-                            url: 'https://tirashi-observer-bot.web.app/tinified/toggle-off.png',
-                            size: '24px',
-                            offsetTop: '3px'
-                        },
-                        {
-                            type: 'text',
-                            offsetTop: '-3px',
-                            contents: [
-                                {
-                                    type: 'span',
-                                    text: 'キャベツ',
-                                    weight: 'bold'
-                                }
-                            ],
-                            wrap: true
-                        }
-                    ]
-                },
-                {
-                    type: 'box',
-                    layout: 'baseline',
-                    backgroundColor: '#eeeeee',
-                    paddingAll: 'lg',
-                    action: {
-                        type: 'postback',
-                        label: 'Reactivate',
-                        data: '{}',
-                        displayText: 'Reactivate キャベツ'
-                    },
-                    spacing: 'md',
-                    contents: [
-                        {
-                            type: 'icon',
-                            url: 'https://tirashi-observer-bot.web.app/tinified/toggle-on.png',
-                            size: '24px',
-                            offsetTop: '3px'
-                        },
-                        {
-                            type: 'text',
-                            offsetTop: '-3px',
-                            contents: [
-                                {
-                                    type: 'span',
-                                    text: 'キャベツ',
-                                    weight: 'bold'
-                                }
-                            ],
-                            wrap: true
-                        }
-                    ]
-                }
-            ]
+            contents
         }
     }
 }
 
-const ListLineMessage = Object.freeze({
-    create(words: ToString[]) {
+const listLineMessage: ListLineMessage = Object.freeze({
+    create(
+        words: Parameters<ListLineMessage['create']>[0]
+    ): import('type-fest').JsonObject {
         const chunks = sliceWords(words)
+        const bubbles = chunks.map((chunk, i) => {
+            const isFirst = i === 0
+
+            return createBubble(chunk, isFirst)
+        })
+
+        return {
+            messages: [
+                {
+                    type: 'flex',
+                    altText: 'ワード一覧',
+                    contents: {
+                        type: 'carousel',
+                        contents: bubbles
+                    }
+                }
+            ]
+        }
     }
 })
