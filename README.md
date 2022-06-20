@@ -106,15 +106,15 @@ Icons are placed on the `/public/tinified/`; also, all of the icons (png) were m
 
 ## Test
 
-This project is depending on [Jest](https://jestjs.io/) testing framework.
+This project depends on [Jest](https://jestjs.io/)](https://jestjs.io/) testing framework.
 
 ### Setup
 
 1. `mv .jest/setup-process-env.js.sample .jest/setup-process-env.js`
 2. Open it, then put `LINE_TOKEN`
-3. run `yarn build`. If you are a VSCode user, It’s also ok that run VSCode's build task(by `cmd+shift+b`)
+3. Run `yarn build`. If you are a VSCode user, It’s also ok that run VSCode's build task(by `cmd+shift+b`)
 
-Some test cases are having `.skip`. This is preventing sending an actual request to another.
+Some test cases have `.skip`. This prevents sending an actual request to another.
 
 If testing them, remove it first before you run `yarn test`; also, you reattach `.skip` to one when finished before `git push`.
 
