@@ -79,6 +79,26 @@ yarn
        ```
         If you want to search words from multiple flyers, you can specify a value separated by `,`.
 
+## Code notes
+
+### About Export and Import
+
+This project has a lot of code like the one below.
+
+```ts
+const A: typeof _A = typeof _A === 'undefined' ? exports.A : _A
+```
+
+Mainly, that reason is for coexistence in standard code on GAS and tests.
+
+First about `typeof _A === 'undefined'`. This comfirms to `_A` is defined. That's because pushed codes by clasp are to comment out all of `import` lines. In short, the `_A` imported is always undefined on GAS, and GAS throws an error when we immediately try to access it. So, comfirming defined it before accesing.
+
+On the other hand, all of `import` lines are fine when running tests (by jest). In short, the `_A` imported is properly defined and able to use it.
+
+Next about `exports.A`. All of `export <name> ...` lines of uploaded codes, which is writing by Typescript, by clasp transpile into `exports.<name> = …` or `<name> …`. In each files, redefining of the `<name>` is needed; so, this project is using `exports.<name> = …`.
+
+If GAS throws an error around here, the matter is a typo of the code or incorrect orders of pushing files. In the letter case, we could fix this to set correct orders to the ["filePushOrder" of the clasp config](https://github.com/google/clasp#project-settings-file-claspjson).
+
 ## Hosting
 
 This project makes very small use of the hosting feature of Firebase. It is for using icons in a Line message.
