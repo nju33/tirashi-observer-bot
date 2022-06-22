@@ -1,1 +1,1 @@
-function deleteRegisteredWords(): void {}
+export function deleteRegisteredWords(): void {}

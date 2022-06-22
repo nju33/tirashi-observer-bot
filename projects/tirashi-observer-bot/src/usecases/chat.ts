@@ -1,10 +1,21 @@
-function chat(
+import type { WordSheetRepository } from '../domains/word'
+import type { WordActionMessage } from '../services/word-action-message'
+import type { ScriptProperties } from '../domains/script-properties'
+import type { ReplyMessages } from '../services/line-fetch'
+import { InfrastructureError as _InfrastructureError } from '../error'
+
+const InfrastructureError: typeof _InfrastructureError =
+    typeof _InfrastructureError === 'undefined'
+        ? exports.InfrastructureError
+        : _InfrastructureError
+
+export function chat(
     message: string,
     replyToken: string,
-    fetch: typeof replyMessages,
-    wordSheet: WordRepository,
+    fetch: ReplyMessages,
+    wordSheet: WordSheetRepository,
     wordActionMessage: WordActionMessage,
-    gasProperties: GasProperties
+    scriptProperties: ScriptProperties
 ): void {
     try {
         const [wordValue, wordActive] = wordSheet.get(message)
@@ -14,6 +25,7 @@ function chat(
         }
 
         if (error.getFrom() === 'WordDoesNotExist') {
+            const lineToken = scriptProperties.getLineToken().get()
             const data = wordActionMessage.create(message, {
                 exists: false,
                 active: false
@@ -21,7 +33,7 @@ function chat(
 
             data.replyToken = replyToken
 
-            fetch(JSON.stringify(data), gasProperties.get('LINE_TOKEN'))
+            fetch(JSON.stringify(data), lineToken)
         }
     }
 }

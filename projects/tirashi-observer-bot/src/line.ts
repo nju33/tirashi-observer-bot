@@ -9,7 +9,7 @@ interface LineEventCommon {
 /**
  * https://developers.line.biz/ja/reference/messaging-api/#message-event
  */
-interface LineMessageEvent extends LineEventCommon {
+export interface LineMessageEvent extends LineEventCommon {
     message: {
         type: 'text'
         text: string
@@ -19,18 +19,18 @@ interface LineMessageEvent extends LineEventCommon {
 /**
  * https://developers.line.biz/ja/reference/messaging-api/#postback-event
  */
-interface LinePostbackEvent extends LineEventCommon {
+export interface LinePostbackEvent extends LineEventCommon {
     postback: {
         data: string
     }
 }
 
-interface LineParameter {
+export interface LineParameter {
     destination: string
     events: Array<LineEventCommon | LinePostbackEvent>
 }
 
-function isLineMessageEvent(
+export function isLineMessageEvent(
     event: LineParameter['events'][0]
 ): event is LineMessageEvent {
     return (

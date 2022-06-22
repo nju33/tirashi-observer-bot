@@ -1,4 +1,6 @@
-const EVENT_TYPES = Object.freeze({
+import type { Word } from './domains/word'
+
+export const EVENT_TYPES = Object.freeze({
     chat: 'chat',
     registerWord: 'registerWord',
     listRegisteredWords: 'listRegisteredWords',
@@ -7,36 +9,36 @@ const EVENT_TYPES = Object.freeze({
     inactivateWord: 'inactivateWord'
 } as const)
 
-interface ChatEventParameter {
+export interface ChatEventParameter {
     type: typeof EVENT_TYPES.chat
     payload: { message: string; replyToken: string }
 }
 
-interface RegisterWordEventParameter {
+export interface RegisterWordEventParameter {
     type: typeof EVENT_TYPES.registerWord
     payload: { message: string; replyToken: string }
 }
 
-interface ListRegisteredWordsEventParameters {
+export interface ListRegisteredWordsEventParameters {
     type: typeof EVENT_TYPES.listRegisteredWords
     payload: { replyToken: string }
 }
 
-interface DeleteRegisteredWords {
+export interface DeleteRegisteredWords {
     type: typeof EVENT_TYPES.deleteRegisteredWords
     payload: { message: string; replyToken: string }
 }
 
-interface ActivateWordEventParameter {
+export interface ActivateWordEventParameter {
     type: typeof EVENT_TYPES.activateWord
     payload: { word: Word; replyToken: string }
 }
 
-interface InctivateWordEventParameter {
+export interface InctivateWordEventParameter {
     type: typeof EVENT_TYPES.activateWord
     payload: { word: Word; replyToken: string }
 }
 
-type EventParameter = RegisterWordEventParameter &
+export type EventParameter = RegisterWordEventParameter &
     ActivateWordEventParameter &
     InctivateWordEventParameter

@@ -1,11 +1,12 @@
+import type { JsonObject } from 'type-fest'
+import type { ListLineMessage } from '../domains/list-line-message'
+import { EVENT_TYPES as _EVENT_TYPES } from '../event'
+
+const EVENT_TYPES: typeof _EVENT_TYPES =
+    typeof _EVENT_TYPES === 'undefined' ? exports.EVENT_TYPES : _EVENT_TYPES
+
 type CreateParameter = Parameters<ListLineMessage['create']>[0]
 type CreateReturnType = ReturnType<ListLineMessage['create']>
-
-// To also access EVENT_TYPES in tests
-let _EVENT_TYPES: typeof EVENT_TYPES | undefined
-if (typeof EVENT_TYPES !== 'undefined') {
-    _EVENT_TYPES = EVENT_TYPES
-}
 
 function sliceWords<T>(words: T[]): T[][] {
     const max = Math.ceil(words.length / 10)
@@ -42,18 +43,16 @@ function createDisplayText(word: CreateParameter[0]): string {
 }
 
 function createData(word: CreateParameter[0]): string {
-    /* eslint-disable @typescript-eslint/no-non-null-assertion */
     const type = word.active
-        ? _EVENT_TYPES!.inactivateWord
-        : _EVENT_TYPES!.activateWord
-    /* eslint-enable @typescript-eslint/no-non-null-assertion */
+        ? EVENT_TYPES.inactivateWord
+        : EVENT_TYPES.activateWord
 
     return JSON.stringify({ type, payload: { word } })
 }
 
 function createToggleIconContent(
     word: CreateParameter[0]
-): import('type-fest').JsonObject {
+): JsonObject {
     const toggleIcon = word.active
         ? 'https://tirashi-observer-bot.web.app/tinified/toggle-on.png'
         : 'https://tirashi-observer-bot.web.app/tinified/toggle-off.png'
@@ -146,10 +145,8 @@ function createBubble(
     }
 }
 
-const listLineMessage: ListLineMessage = {
-    create(
-        words: Parameters<ListLineMessage['create']>[0]
-    ): import('type-fest').JsonObject {
+export class TobListLineMessage implements ListLineMessage {
+    create(words: Parameters<ListLineMessage['create']>[0]): JsonObject {
         const chunks = sliceWords(words)
         const bubbles = chunks.map((chunk, i) => {
             const isFirst = i === 0
@@ -171,3 +168,4 @@ const listLineMessage: ListLineMessage = {
         }
     }
 }
+

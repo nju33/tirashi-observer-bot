@@ -24,6 +24,17 @@
                 "isDefault": true,
                 "kind": "build"
             }
+        },
+        {
+            "label": "test",
+            "type": "shell",
+            "command": "node_modules/.bin/jest",
+            "args": ["${relativeFile}", "--no-silent"],
+            "problemMatcher": [],
+            "group": {
+                "isDefault": true,
+                "kind": "test"
+            }
         }
     ]
 }

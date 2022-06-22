@@ -1,7 +1,16 @@
+import { fetchText as _fetchText } from './fetch'
+import type {
+    ReplyMessages,
+    SendBroadCastMessage
+} from '../services/line-fetch'
+
+const fetchText: typeof _fetchText =
+    typeof _fetchText === 'undefined' ? exports.fetchText : _fetchText
+
 /**
  * https://developers.line.biz/ja/docs/messaging-api/sending-messages/#reply-messages
  */
-function replyMessages(data: string, bearerToken: string): string {
+export const replyMessages: ReplyMessages = (data, bearerToken) => {
     const URL = 'https://api.line.me/v2/bot/message/reply'
 
     return fetchText(URL, {
@@ -17,7 +26,10 @@ function replyMessages(data: string, bearerToken: string): string {
 /**
  * https://developers.line.biz/ja/reference/messaging-api/#send-broadcast-message
  */
-function sendBroadcastMessage(data: string, bearerToken: string): string {
+export const sendBroadcastMessage: SendBroadCastMessage = (
+    data: string,
+    bearerToken: string
+) => {
     const URL = 'https://api.line.me/v2/bot/message/broadcast'
 
     return fetchText(URL, {

@@ -1,9 +1,19 @@
+import { SHEET_NAMES as _SHEET_NAMES } from './constants'
+import { InfrastructureError as _InfrastructureError } from './projects/tirashi-observer-bot/src/error'
+
+const SHEET_NAMES: typeof _SHEET_NAMES =
+    typeof _SHEET_NAMES === 'undefined' ? exports.SHEET_NAMES : _SHEET_NAMES
+const InfrastructureError: typeof _InfrastructureError =
+    typeof _InfrastructureError === 'undefined'
+        ? exports.InfrastructureError
+        : _InfrastructureError
+
 /**
  * Initialize sheets of the parent of a GAS script
  *
  * @param event - When executing `clasp run` with `—params`, to be an object is containing `params`
  */
-function _initSheets(): void {
+export function _initSheets(): void {
     const spreadsheet = SpreadsheetApp.getActive()
     const sheet = spreadsheet.getSheetByName(SHEET_NAMES.Words)
 

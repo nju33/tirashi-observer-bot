@@ -1,9 +1,8 @@
 import axios, { AxiosInstance } from 'axios'
-import rewire from 'rewire'
+import { LineMessage } from './line-message'
 
 describe('LineMessage', () => {
     let instance: AxiosInstance
-    let lineMessageModule: ReturnType<typeof rewire>
 
     beforeAll(() => {
         instance = axios.create({
@@ -13,17 +12,10 @@ describe('LineMessage', () => {
                 Authorization: `Bearer ${process.env.LINE_TOKEN!}`
             }
         })
-
-        lineMessageModule = rewire(
-            '../../../../out/projects/tirashi-observer-bot/src/presentation/line-message'
-        )
     })
 
     it.skip('properly send a success message', async () => {
-        const targetClass =
-            lineMessageModule.__get__<typeof LineMessage>('LineMessage')
-
-        const data = targetClass.Success('Success')
+        const data = LineMessage.Success('Success')
 
         await instance.post(
             'https://api.line.me/v2/bot/message/broadcast',
@@ -32,10 +24,7 @@ describe('LineMessage', () => {
     })
 
     it.skip('properly send a warning message', async () => {
-        const targetClass =
-            lineMessageModule.__get__<typeof LineMessage>('LineMessage')
-
-        const data = targetClass.Warning('Warning')
+        const data = LineMessage.Warning('Warning')
 
         await instance.post(
             'https://api.line.me/v2/bot/message/broadcast',
@@ -44,10 +33,7 @@ describe('LineMessage', () => {
     })
 
     it.skip('properly send a error message', async () => {
-        const targetClass =
-            lineMessageModule.__get__<typeof LineMessage>('LineMessage')
-
-        const data = targetClass.Error('Error')
+        const data = LineMessage.Error('Error')
 
         await instance.post(
             'https://api.line.me/v2/bot/message/broadcast',

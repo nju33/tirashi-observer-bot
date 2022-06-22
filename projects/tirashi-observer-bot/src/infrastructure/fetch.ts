@@ -1,4 +1,4 @@
-function fetchText(
+export function fetchText(
     url: string,
     data: {
         method: GoogleAppsScript.URL_Fetch.HttpMethod
@@ -26,5 +26,5 @@ function fetchText(
     return response.getContentText()
 }
 
-type FetchText = typeof fetchText
-type FetchTextData = Parameters<FetchText>[1]
+export type FetchText = typeof fetchText
+export type FetchTextData = Parameters<FetchText>[1]

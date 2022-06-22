@@ -1,27 +1,24 @@
 import axios, { AxiosInstance } from 'axios'
-import rewire from 'rewire'
+import { TobWord } from '../domains/word'
+import { TobListLineMessage } from './list-line-message'
 
-function createDummyWords(): Word[] {
-    return [...Array(100)].map(() => {
+function createDummyWords(): TobWord[] {
+    // When tried to request with 100 TobWords, its response was 400 with the mssage "flex too long"
+    // So set a little less.
+    return [...Array(80)].map(() => {
         const randomValue = Math.random()
 
-        return {
-            value: Math.floor(randomValue * 1000).toString(),
-            active: Boolean(Math.round(randomValue))
-        }
+        return TobWord.reconstruct(
+            Math.floor(randomValue * 1000).toString(),
+            Boolean(Math.round(randomValue))
+        )
     })
 }
 
 describe('ListLineMessage', () => {
     let instance: AxiosInstance
-    let lineMessageModule: ReturnType<typeof rewire>
 
     beforeAll(() => {
-        const eventModule = rewire(
-            '../../../../out/projects/tirashi-observer-bot/src/event'
-        )
-        const eventTypes =
-            eventModule.__get__<typeof EVENT_TYPES>('EVENT_TYPES')
         instance = axios.create({
             headers: {
                 'Content-Type': 'application/json',
@@ -29,17 +26,13 @@ describe('ListLineMessage', () => {
                 Authorization: `Bearer ${process.env.LINE_TOKEN!}`
             }
         })
-        lineMessageModule = rewire(
-            '../../../../out/projects/tirashi-observer-bot/src/presentation/list-line-message'
-        )
-        lineMessageModule.__set__('_EVENT_TYPES', eventTypes)
     })
 
     it.skip('properly send to list words message', async () => {
-        const targetClass =
-            lineMessageModule.__get__<typeof listLineMessage>('listLineMessage')
+        const listLineMessage = new TobListLineMessage()
 
-        const data = targetClass.create(createDummyWords())
+        const data = listLineMessage.create(createDummyWords())
+        console.log(JSON.stringify(data))
 
         await instance.post(
             'https://api.line.me/v2/bot/message/broadcast',

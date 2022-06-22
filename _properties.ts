@@ -3,7 +3,7 @@
  *
  * @param event - When executing `clasp run` with `—params`, to be an object is containing `params`
  */
-function _initScriptProperties(event?: {
+export function _initScriptProperties(event?: {
     params?: { LINE_TOKEN?: string; TIRASHI_URL?: string }
 }): any {
     if (event?.params?.LINE_TOKEN != null) {

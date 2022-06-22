@@ -1,22 +1,24 @@
-function registerWords(
-    { message }: RegisterWordEventParameter['payload'],
-    fetch: typeof fetchText,
-    wordSheet: WordRepository,
-    lineMessage: typeof LineMessage
-): void {
-    const word = constructWord(message)
+export function registerWord(): void {}
 
-    // if (wordSheet.has(word)) {
-    //     const data = lineMessage.Warning(`「${word.value}」は既に登録済みです`)
+// export function registerWords(
+//     { message }: RegisterWordEventParameter['payload'],
+//     fetch: typeof fetchText,
+//     wordSheet: WordSheetRepository,
+//     lineMessage: typeof LineMessage
+// ): void {
+//     const word = constructWord(message)
 
-    //     fetch('url', {
-    //         method: 'get',
-    //         headers: { 'content-type': 'application/json' },
-    //         data: JSON.stringify(data)
-    //     })
+//     // if (wordSheet.has(word)) {
+//     //     const data = lineMessage.Warning(`「${word.value}」は既に登録済みです`)
 
-    //     return
-    // }
+//     //     fetch('url', {
+//     //         method: 'get',
+//     //         headers: { 'content-type': 'application/json' },
+//     //         data: JSON.stringify(data)
+//     //     })
 
-    // wordSheet.insert(word)
-}
+//     //     return
+//     // }
+
+//     // wordSheet.insert(word)
+// }

@@ -1,4 +1,4 @@
-const LineMessage = Object.freeze({
+export const LineMessage = Object.freeze({
     create(iconUrl: string, message: string) {
         return {
             messages: [

@@ -1,7 +1,23 @@
-class WordSheet implements WordRepository {
+import type { WordSheetRepository } from '../domains/word'
+import { InfrastructureError as _InfrastructureError } from '../error'
+
+const InfrastructureError: typeof _InfrastructureError =
+    typeof _InfrastructureError === 'undefined'
+        ? exports.InfrastructureError
+        : _InfrastructureError
+
+export type WordSheetConstructorParameter = [
+    Pick<GoogleAppsScript.Spreadsheet.SpreadsheetApp, 'getActive'>
+]
+
+export class TobWordSheetRepository implements WordSheetRepository {
+    constructor(
+        private readonly spreadsheetApp: WordSheetConstructorParameter[0]
+    ) {}
+
     get(
-        value: Parameters<WordRepository['has']>[0]
-    ): ReturnType<WordRepository['get']> {
+        value: Parameters<WordSheetRepository['has']>[0]
+    ): ReturnType<WordSheetRepository['get']> {
         const sheet = this.getSheet()
         const textFinder = sheet.createTextFinder(value)
         const next = textFinder.findNext()
@@ -10,12 +26,12 @@ class WordSheet implements WordRepository {
             throw InfrastructureError.WordDoesNotExist(value)
         }
 
-        return sheet.getRange(next.getRow() + 1, 2, 0, 2).getValues()[0]
+        return sheet.getRange(next.getRow(), 2, 0, 2).getValues()[0]
     }
 
     has(
-        value: Parameters<WordRepository['has']>[0]
-    ): ReturnType<WordRepository['has']> {
+        value: Parameters<WordSheetRepository['has']>[0]
+    ): ReturnType<WordSheetRepository['has']> {
         const sheet = this.getSheet()
         const textFinder = sheet.createTextFinder(value)
         const next = textFinder.findNext()
@@ -23,7 +39,7 @@ class WordSheet implements WordRepository {
         return next != null
     }
 
-    insert(word: Parameters<WordRepository['insert']>[0]): void {
+    insert(word: Parameters<WordSheetRepository['insert']>[0]): void {
         const sheet = this.getSheet()
         const lastRow = sheet.getLastRow()
         const insertingValues = word.toSheetValue()
@@ -33,13 +49,24 @@ class WordSheet implements WordRepository {
             .setValues(insertingValues as any)
     }
 
-    delete(word: Parameters<WordRepository['delete']>[0]): void {
+    delete(word: Parameters<WordSheetRepository['delete']>[0]): void {
         const sheet = this.getSheet()
+        const textFinder = sheet.createTextFinder(word.value)
+        const next = textFinder.findNext()
+
+        if (next == null) {
+            throw InfrastructureError.WordDoesNotExist(word.value)
+        }
+
+        sheet.deleteRow(next.getRow())
     }
 
-    private getSheet(): GoogleAppsScript.Spreadsheet.Sheet {
+    private getSheet(): Pick<
+        GoogleAppsScript.Spreadsheet.Sheet,
+        'getLastRow' | 'getRange' | 'createTextFinder' | 'deleteRow'
+    > {
         const sheetName = 'Words'
-        const spreadsheet = SpreadsheetApp.getActive()
+        const spreadsheet = this.spreadsheetApp.getActive()
         const sheet = spreadsheet.getSheetByName(sheetName)
 
         if (sheet == null) {

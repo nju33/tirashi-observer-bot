@@ -1,1 +1,1 @@
-function listRegisteredWords(): void {}
+export function listRegisteredWords(): void {}

@@ -1,3 +1,5 @@
+import type { WordActionMessage } from '../services/word-action-message'
+
 const EMOJIS = Object.freeze({
     // https://cloud.nju33.com/iPGqKfzn0BLIjkLyMXDa
     hatena: {
@@ -14,7 +16,7 @@ const EMOJIS = Object.freeze({
  * 3. 無効化 - Display when registered and activated
  * 4. 削除 - Display when registered
  */
-function constructQuickReply(
+export function constructQuickReply(
     value: string,
     flags: {
         exists: boolean
@@ -81,7 +83,7 @@ function constructQuickReply(
     return result
 }
 
-const wordActionMessage: WordActionMessage = {
+export const wordActionMessage: WordActionMessage = {
     create(value, flags) {
         return {
             messages: [

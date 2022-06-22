@@ -38,7 +38,8 @@
         "**/.gitpod/**": true
     },
     "javascript.suggestionActions.enabled": false,
-    "jest.autoEnable": false,
+    "jest.autoRun": { "watch": true, "onStartup": ["all-tests"] },
+    // "jest.autoRun": { "watch": false, "onSave": "test-only" },
     "npm.packageManager": "yarn",
     "peacock.affectStatusBar": false,
     "peacock.color": "transparent",

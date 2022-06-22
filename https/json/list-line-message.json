@@ -2,7 +2,7 @@
     "messages": [
         {
             "type": "flex",
-            "altText": "List of registered words",
+            "altText": "ワード一覧",
             "contents": {
                 "type": "carousel",
                 "contents": [
@@ -29,47 +29,15 @@
                             "spacing": "sm",
                             "contents": [
                                 {
-                                    "type": "box",
-                                    "layout": "baseline",
                                     "backgroundColor": "#eeeeee",
-                                    "paddingAll": "lg",
-                                    "action": {
-                                        "type": "postback",
-                                        "label": "Reactivate",
-                                        "data": "{}",
-                                        "displayText": "Reactivate キャベツ"
-                                    },
-                                    "spacing": "md",
-                                    "contents": [
-                                        {
-                                            "type": "icon",
-                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-on.png",
-                                            "size": "24px",
-                                            "offsetTop": "3px"
-                                        },
-                                        {
-                                            "type": "text",
-                                            "offsetTop": "-3px",
-                                            "contents": [
-                                                {
-                                                    "type": "span",
-                                                    "text": "キャベツ",
-                                                    "weight": "bold"
-                                                }
-                                            ],
-                                            "wrap": true
-                                        }
-                                    ]
-                                },
-                                {
                                     "type": "box",
                                     "layout": "baseline",
                                     "paddingAll": "lg",
                                     "action": {
                                         "type": "postback",
-                                        "label": "Reactivate",
-                                        "data": "{}",
-                                        "displayText": "Reactivate キャベツ"
+                                        "label": "無効化",
+                                        "displayText": "196を無効にします。",
+                                        "data": "{\"type\":\"activateWord\",\"payload\":{\"word\":{\"_value\":\"196\",\"_active\":false}}}"
                                     },
                                     "spacing": "md",
                                     "contents": [
@@ -85,7 +53,7 @@
                                             "contents": [
                                                 {
                                                     "type": "span",
-                                                    "text": "キャベツ",
+                                                    "text": "196",
                                                     "weight": "bold"
                                                 }
                                             ],
@@ -96,13 +64,12 @@
                                 {
                                     "type": "box",
                                     "layout": "baseline",
-                                    "backgroundColor": "#eeeeee",
                                     "paddingAll": "lg",
                                     "action": {
                                         "type": "postback",
-                                        "label": "Reactivate",
-                                        "data": "{}",
-                                        "displayText": "Reactivate キャベツ"
+                                        "label": "有効化",
+                                        "displayText": "517を有効にします。",
+                                        "data": "{\"type\":\"inactivateWord\",\"payload\":{\"word\":{\"_value\":\"517\",\"_active\":true}}}"
                                     },
                                     "spacing": "md",
                                     "contents": [
@@ -118,7 +85,267 @@
                                             "contents": [
                                                 {
                                                     "type": "span",
-                                                    "text": "キャベツ",
+                                                    "text": "517",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "backgroundColor": "#eeeeee",
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "無効化",
+                                        "displayText": "15を無効にします。",
+                                        "data": "{\"type\":\"activateWord\",\"payload\":{\"word\":{\"_value\":\"15\",\"_active\":false}}}"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-off.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "15",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "有効化",
+                                        "displayText": "503を有効にします。",
+                                        "data": "{\"type\":\"inactivateWord\",\"payload\":{\"word\":{\"_value\":\"503\",\"_active\":true}}}"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-on.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "503",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "backgroundColor": "#eeeeee",
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "無効化",
+                                        "displayText": "116を無効にします。",
+                                        "data": "{\"type\":\"activateWord\",\"payload\":{\"word\":{\"_value\":\"116\",\"_active\":false}}}"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-off.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "116",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "有効化",
+                                        "displayText": "644を有効にします。",
+                                        "data": "{\"type\":\"inactivateWord\",\"payload\":{\"word\":{\"_value\":\"644\",\"_active\":true}}}"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-on.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "644",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "backgroundColor": "#eeeeee",
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "無効化",
+                                        "displayText": "47を無効にします。",
+                                        "data": "{\"type\":\"activateWord\",\"payload\":{\"word\":{\"_value\":\"47\",\"_active\":false}}}"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-off.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "47",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "無効化",
+                                        "displayText": "110を無効にします。",
+                                        "data": "{\"type\":\"activateWord\",\"payload\":{\"word\":{\"_value\":\"110\",\"_active\":false}}}"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-off.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "110",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "backgroundColor": "#eeeeee",
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "有効化",
+                                        "displayText": "623を有効にします。",
+                                        "data": "{\"type\":\"inactivateWord\",\"payload\":{\"word\":{\"_value\":\"623\",\"_active\":true}}}"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-on.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "623",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "有効化",
+                                        "displayText": "839を有効にします。",
+                                        "data": "{\"type\":\"inactivateWord\",\"payload\":{\"word\":{\"_value\":\"839\",\"_active\":true}}}"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-on.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "839",
                                                     "weight": "bold"
                                                 }
                                             ],
@@ -143,15 +370,15 @@
                             "spacing": "sm",
                             "contents": [
                                 {
+                                    "backgroundColor": "#eeeeee",
                                     "type": "box",
                                     "layout": "baseline",
-                                    "backgroundColor": "#eeeeee",
                                     "paddingAll": "lg",
                                     "action": {
                                         "type": "postback",
-                                        "label": "Reactivate",
-                                        "data": "{}",
-                                        "displayText": "Reactivate キャベツ"
+                                        "label": "有効化",
+                                        "displayText": "726を有効にします。",
+                                        "data": "{\"type\":\"inactivateWord\",\"payload\":{\"word\":{\"_value\":\"726\",\"_active\":true}}}"
                                     },
                                     "spacing": "md",
                                     "contents": [
@@ -167,7 +394,7 @@
                                             "contents": [
                                                 {
                                                     "type": "span",
-                                                    "text": "キャベツ",
+                                                    "text": "726",
                                                     "weight": "bold"
                                                 }
                                             ],
@@ -181,9 +408,42 @@
                                     "paddingAll": "lg",
                                     "action": {
                                         "type": "postback",
-                                        "label": "Reactivate",
-                                        "data": "{}",
-                                        "displayText": "Reactivate キャベツ"
+                                        "label": "有効化",
+                                        "displayText": "574を有効にします。",
+                                        "data": "{\"type\":\"inactivateWord\",\"payload\":{\"word\":{\"_value\":\"574\",\"_active\":true}}}"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-on.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "574",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "backgroundColor": "#eeeeee",
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "無効化",
+                                        "displayText": "458を無効にします。",
+                                        "data": "{\"type\":\"activateWord\",\"payload\":{\"word\":{\"_value\":\"458\",\"_active\":false}}}"
                                     },
                                     "spacing": "md",
                                     "contents": [
@@ -199,7 +459,7 @@
                                             "contents": [
                                                 {
                                                     "type": "span",
-                                                    "text": "キャベツ",
+                                                    "text": "458",
                                                     "weight": "bold"
                                                 }
                                             ],
@@ -210,13 +470,288 @@
                                 {
                                     "type": "box",
                                     "layout": "baseline",
-                                    "backgroundColor": "#eeeeee",
                                     "paddingAll": "lg",
                                     "action": {
                                         "type": "postback",
-                                        "label": "Reactivate",
-                                        "data": "{}",
-                                        "displayText": "Reactivate キャベツ"
+                                        "label": "無効化",
+                                        "displayText": "94を無効にします。",
+                                        "data": "{\"type\":\"activateWord\",\"payload\":{\"word\":{\"_value\":\"94\",\"_active\":false}}}"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-off.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "94",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "backgroundColor": "#eeeeee",
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "無効化",
+                                        "displayText": "262を無効にします。",
+                                        "data": "{\"type\":\"activateWord\",\"payload\":{\"word\":{\"_value\":\"262\",\"_active\":false}}}"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-off.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "262",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "無効化",
+                                        "displayText": "456を無効にします。",
+                                        "data": "{\"type\":\"activateWord\",\"payload\":{\"word\":{\"_value\":\"456\",\"_active\":false}}}"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-off.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "456",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "backgroundColor": "#eeeeee",
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "無効化",
+                                        "displayText": "89を無効にします。",
+                                        "data": "{\"type\":\"activateWord\",\"payload\":{\"word\":{\"_value\":\"89\",\"_active\":false}}}"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-off.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "89",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "無効化",
+                                        "displayText": "314を無効にします。",
+                                        "data": "{\"type\":\"activateWord\",\"payload\":{\"word\":{\"_value\":\"314\",\"_active\":false}}}"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-off.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "314",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "backgroundColor": "#eeeeee",
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "無効化",
+                                        "displayText": "218を無効にします。",
+                                        "data": "{\"type\":\"activateWord\",\"payload\":{\"word\":{\"_value\":\"218\",\"_active\":false}}}"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-off.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "218",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "無効化",
+                                        "displayText": "131を無効にします。",
+                                        "data": "{\"type\":\"activateWord\",\"payload\":{\"word\":{\"_value\":\"131\",\"_active\":false}}}"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-off.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "131",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "type": "bubble",
+                        "header": {
+                            "type": "box",
+                            "layout": "horizontal",
+                            "height": "80px",
+                            "contents": []
+                        },
+                        "body": {
+                            "type": "box",
+                            "layout": "vertical",
+                            "spacing": "sm",
+                            "contents": [
+                                {
+                                    "backgroundColor": "#eeeeee",
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "無効化",
+                                        "displayText": "372を無効にします。",
+                                        "data": "{\"type\":\"activateWord\",\"payload\":{\"word\":{\"_value\":\"372\",\"_active\":false}}}"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-off.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "372",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "有効化",
+                                        "displayText": "715を有効にします。",
+                                        "data": "{\"type\":\"inactivateWord\",\"payload\":{\"word\":{\"_value\":\"715\",\"_active\":true}}}"
                                     },
                                     "spacing": "md",
                                     "contents": [
@@ -232,7 +767,1972 @@
                                             "contents": [
                                                 {
                                                     "type": "span",
-                                                    "text": "キャベツ",
+                                                    "text": "715",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "backgroundColor": "#eeeeee",
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "無効化",
+                                        "displayText": "7を無効にします。",
+                                        "data": "{\"type\":\"activateWord\",\"payload\":{\"word\":{\"_value\":\"7\",\"_active\":false}}}"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-off.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "7",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "無効化",
+                                        "displayText": "298を無効にします。",
+                                        "data": "{\"type\":\"activateWord\",\"payload\":{\"word\":{\"_value\":\"298\",\"_active\":false}}}"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-off.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "298",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "backgroundColor": "#eeeeee",
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "有効化",
+                                        "displayText": "590を有効にします。",
+                                        "data": "{\"type\":\"inactivateWord\",\"payload\":{\"word\":{\"_value\":\"590\",\"_active\":true}}}"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-on.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "590",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "有効化",
+                                        "displayText": "683を有効にします。",
+                                        "data": "{\"type\":\"inactivateWord\",\"payload\":{\"word\":{\"_value\":\"683\",\"_active\":true}}}"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-on.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "683",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "backgroundColor": "#eeeeee",
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "無効化",
+                                        "displayText": "468を無効にします。",
+                                        "data": "{\"type\":\"activateWord\",\"payload\":{\"word\":{\"_value\":\"468\",\"_active\":false}}}"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-off.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "468",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "有効化",
+                                        "displayText": "995を有効にします。",
+                                        "data": "{\"type\":\"inactivateWord\",\"payload\":{\"word\":{\"_value\":\"995\",\"_active\":true}}}"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-on.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "995",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "backgroundColor": "#eeeeee",
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "有効化",
+                                        "displayText": "949を有効にします。",
+                                        "data": "{\"type\":\"inactivateWord\",\"payload\":{\"word\":{\"_value\":\"949\",\"_active\":true}}}"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-on.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "949",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "有効化",
+                                        "displayText": "863を有効にします。",
+                                        "data": "{\"type\":\"inactivateWord\",\"payload\":{\"word\":{\"_value\":\"863\",\"_active\":true}}}"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-on.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "863",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "type": "bubble",
+                        "header": {
+                            "type": "box",
+                            "layout": "horizontal",
+                            "height": "80px",
+                            "contents": []
+                        },
+                        "body": {
+                            "type": "box",
+                            "layout": "vertical",
+                            "spacing": "sm",
+                            "contents": [
+                                {
+                                    "backgroundColor": "#eeeeee",
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "有効化",
+                                        "displayText": "849を有効にします。",
+                                        "data": "{\"type\":\"inactivateWord\",\"payload\":{\"word\":{\"_value\":\"849\",\"_active\":true}}}"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-on.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "849",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "無効化",
+                                        "displayText": "15を無効にします。",
+                                        "data": "{\"type\":\"activateWord\",\"payload\":{\"word\":{\"_value\":\"15\",\"_active\":false}}}"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-off.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "15",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "backgroundColor": "#eeeeee",
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "有効化",
+                                        "displayText": "520を有効にします。",
+                                        "data": "{\"type\":\"inactivateWord\",\"payload\":{\"word\":{\"_value\":\"520\",\"_active\":true}}}"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-on.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "520",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "有効化",
+                                        "displayText": "809を有効にします。",
+                                        "data": "{\"type\":\"inactivateWord\",\"payload\":{\"word\":{\"_value\":\"809\",\"_active\":true}}}"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-on.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "809",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "backgroundColor": "#eeeeee",
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "有効化",
+                                        "displayText": "715を有効にします。",
+                                        "data": "{\"type\":\"inactivateWord\",\"payload\":{\"word\":{\"_value\":\"715\",\"_active\":true}}}"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-on.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "715",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "有効化",
+                                        "displayText": "747を有効にします。",
+                                        "data": "{\"type\":\"inactivateWord\",\"payload\":{\"word\":{\"_value\":\"747\",\"_active\":true}}}"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-on.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "747",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "backgroundColor": "#eeeeee",
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "無効化",
+                                        "displayText": "346を無効にします。",
+                                        "data": "{\"type\":\"activateWord\",\"payload\":{\"word\":{\"_value\":\"346\",\"_active\":false}}}"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-off.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "346",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "有効化",
+                                        "displayText": "861を有効にします。",
+                                        "data": "{\"type\":\"inactivateWord\",\"payload\":{\"word\":{\"_value\":\"861\",\"_active\":true}}}"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-on.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "861",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "backgroundColor": "#eeeeee",
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "無効化",
+                                        "displayText": "113を無効にします。",
+                                        "data": "{\"type\":\"activateWord\",\"payload\":{\"word\":{\"_value\":\"113\",\"_active\":false}}}"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-off.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "113",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "有効化",
+                                        "displayText": "924を有効にします。",
+                                        "data": "{\"type\":\"inactivateWord\",\"payload\":{\"word\":{\"_value\":\"924\",\"_active\":true}}}"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-on.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "924",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "type": "bubble",
+                        "header": {
+                            "type": "box",
+                            "layout": "horizontal",
+                            "height": "80px",
+                            "contents": []
+                        },
+                        "body": {
+                            "type": "box",
+                            "layout": "vertical",
+                            "spacing": "sm",
+                            "contents": [
+                                {
+                                    "backgroundColor": "#eeeeee",
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "無効化",
+                                        "displayText": "40を無効にします。",
+                                        "data": "{\"type\":\"activateWord\",\"payload\":{\"word\":{\"_value\":\"40\",\"_active\":false}}}"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-off.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "40",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "有効化",
+                                        "displayText": "549を有効にします。",
+                                        "data": "{\"type\":\"inactivateWord\",\"payload\":{\"word\":{\"_value\":\"549\",\"_active\":true}}}"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-on.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "549",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "backgroundColor": "#eeeeee",
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "有効化",
+                                        "displayText": "862を有効にします。",
+                                        "data": "{\"type\":\"inactivateWord\",\"payload\":{\"word\":{\"_value\":\"862\",\"_active\":true}}}"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-on.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "862",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "有効化",
+                                        "displayText": "723を有効にします。",
+                                        "data": "{\"type\":\"inactivateWord\",\"payload\":{\"word\":{\"_value\":\"723\",\"_active\":true}}}"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-on.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "723",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "backgroundColor": "#eeeeee",
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "有効化",
+                                        "displayText": "601を有効にします。",
+                                        "data": "{\"type\":\"inactivateWord\",\"payload\":{\"word\":{\"_value\":\"601\",\"_active\":true}}}"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-on.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "601",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "有効化",
+                                        "displayText": "869を有効にします。",
+                                        "data": "{\"type\":\"inactivateWord\",\"payload\":{\"word\":{\"_value\":\"869\",\"_active\":true}}}"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-on.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "869",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "backgroundColor": "#eeeeee",
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "有効化",
+                                        "displayText": "952を有効にします。",
+                                        "data": "{\"type\":\"inactivateWord\",\"payload\":{\"word\":{\"_value\":\"952\",\"_active\":true}}}"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-on.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "952",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "有効化",
+                                        "displayText": "691を有効にします。",
+                                        "data": "{\"type\":\"inactivateWord\",\"payload\":{\"word\":{\"_value\":\"691\",\"_active\":true}}}"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-on.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "691",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "backgroundColor": "#eeeeee",
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "無効化",
+                                        "displayText": "482を無効にします。",
+                                        "data": "{\"type\":\"activateWord\",\"payload\":{\"word\":{\"_value\":\"482\",\"_active\":false}}}"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-off.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "482",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "有効化",
+                                        "displayText": "775を有効にします。",
+                                        "data": "{\"type\":\"inactivateWord\",\"payload\":{\"word\":{\"_value\":\"775\",\"_active\":true}}}"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-on.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "775",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "type": "bubble",
+                        "header": {
+                            "type": "box",
+                            "layout": "horizontal",
+                            "height": "80px",
+                            "contents": []
+                        },
+                        "body": {
+                            "type": "box",
+                            "layout": "vertical",
+                            "spacing": "sm",
+                            "contents": [
+                                {
+                                    "backgroundColor": "#eeeeee",
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "有効化",
+                                        "displayText": "850を有効にします。",
+                                        "data": "{\"type\":\"inactivateWord\",\"payload\":{\"word\":{\"_value\":\"850\",\"_active\":true}}}"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-on.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "850",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "無効化",
+                                        "displayText": "454を無効にします。",
+                                        "data": "{\"type\":\"activateWord\",\"payload\":{\"word\":{\"_value\":\"454\",\"_active\":false}}}"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-off.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "454",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "backgroundColor": "#eeeeee",
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "有効化",
+                                        "displayText": "905を有効にします。",
+                                        "data": "{\"type\":\"inactivateWord\",\"payload\":{\"word\":{\"_value\":\"905\",\"_active\":true}}}"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-on.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "905",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "有効化",
+                                        "displayText": "841を有効にします。",
+                                        "data": "{\"type\":\"inactivateWord\",\"payload\":{\"word\":{\"_value\":\"841\",\"_active\":true}}}"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-on.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "841",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "backgroundColor": "#eeeeee",
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "無効化",
+                                        "displayText": "14を無効にします。",
+                                        "data": "{\"type\":\"activateWord\",\"payload\":{\"word\":{\"_value\":\"14\",\"_active\":false}}}"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-off.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "14",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "無効化",
+                                        "displayText": "257を無効にします。",
+                                        "data": "{\"type\":\"activateWord\",\"payload\":{\"word\":{\"_value\":\"257\",\"_active\":false}}}"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-off.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "257",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "backgroundColor": "#eeeeee",
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "有効化",
+                                        "displayText": "567を有効にします。",
+                                        "data": "{\"type\":\"inactivateWord\",\"payload\":{\"word\":{\"_value\":\"567\",\"_active\":true}}}"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-on.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "567",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "無効化",
+                                        "displayText": "163を無効にします。",
+                                        "data": "{\"type\":\"activateWord\",\"payload\":{\"word\":{\"_value\":\"163\",\"_active\":false}}}"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-off.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "163",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "backgroundColor": "#eeeeee",
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "有効化",
+                                        "displayText": "994を有効にします。",
+                                        "data": "{\"type\":\"inactivateWord\",\"payload\":{\"word\":{\"_value\":\"994\",\"_active\":true}}}"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-on.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "994",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "無効化",
+                                        "displayText": "256を無効にします。",
+                                        "data": "{\"type\":\"activateWord\",\"payload\":{\"word\":{\"_value\":\"256\",\"_active\":false}}}"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-off.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "256",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "type": "bubble",
+                        "header": {
+                            "type": "box",
+                            "layout": "horizontal",
+                            "height": "80px",
+                            "contents": []
+                        },
+                        "body": {
+                            "type": "box",
+                            "layout": "vertical",
+                            "spacing": "sm",
+                            "contents": [
+                                {
+                                    "backgroundColor": "#eeeeee",
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "有効化",
+                                        "displayText": "614を有効にします。",
+                                        "data": "{\"type\":\"inactivateWord\",\"payload\":{\"word\":{\"_value\":\"614\",\"_active\":true}}}"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-on.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "614",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "有効化",
+                                        "displayText": "788を有効にします。",
+                                        "data": "{\"type\":\"inactivateWord\",\"payload\":{\"word\":{\"_value\":\"788\",\"_active\":true}}}"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-on.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "788",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "backgroundColor": "#eeeeee",
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "無効化",
+                                        "displayText": "175を無効にします。",
+                                        "data": "{\"type\":\"activateWord\",\"payload\":{\"word\":{\"_value\":\"175\",\"_active\":false}}}"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-off.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "175",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "無効化",
+                                        "displayText": "387を無効にします。",
+                                        "data": "{\"type\":\"activateWord\",\"payload\":{\"word\":{\"_value\":\"387\",\"_active\":false}}}"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-off.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "387",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "backgroundColor": "#eeeeee",
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "無効化",
+                                        "displayText": "25を無効にします。",
+                                        "data": "{\"type\":\"activateWord\",\"payload\":{\"word\":{\"_value\":\"25\",\"_active\":false}}}"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-off.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "25",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "無効化",
+                                        "displayText": "263を無効にします。",
+                                        "data": "{\"type\":\"activateWord\",\"payload\":{\"word\":{\"_value\":\"263\",\"_active\":false}}}"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-off.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "263",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "backgroundColor": "#eeeeee",
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "有効化",
+                                        "displayText": "761を有効にします。",
+                                        "data": "{\"type\":\"inactivateWord\",\"payload\":{\"word\":{\"_value\":\"761\",\"_active\":true}}}"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-on.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "761",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "有効化",
+                                        "displayText": "830を有効にします。",
+                                        "data": "{\"type\":\"inactivateWord\",\"payload\":{\"word\":{\"_value\":\"830\",\"_active\":true}}}"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-on.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "830",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "backgroundColor": "#eeeeee",
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "有効化",
+                                        "displayText": "638を有効にします。",
+                                        "data": "{\"type\":\"inactivateWord\",\"payload\":{\"word\":{\"_value\":\"638\",\"_active\":true}}}"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-on.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "638",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "有効化",
+                                        "displayText": "633を有効にします。",
+                                        "data": "{\"type\":\"inactivateWord\",\"payload\":{\"word\":{\"_value\":\"633\",\"_active\":true}}}"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-on.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "633",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "type": "bubble",
+                        "header": {
+                            "type": "box",
+                            "layout": "horizontal",
+                            "height": "80px",
+                            "contents": []
+                        },
+                        "body": {
+                            "type": "box",
+                            "layout": "vertical",
+                            "spacing": "sm",
+                            "contents": [
+                                {
+                                    "backgroundColor": "#eeeeee",
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "無効化",
+                                        "displayText": "166を無効にします。",
+                                        "data": "{\"type\":\"activateWord\",\"payload\":{\"word\":{\"_value\":\"166\",\"_active\":false}}}"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-off.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "166",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "無効化",
+                                        "displayText": "389を無効にします。",
+                                        "data": "{\"type\":\"activateWord\",\"payload\":{\"word\":{\"_value\":\"389\",\"_active\":false}}}"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-off.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "389",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "backgroundColor": "#eeeeee",
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "無効化",
+                                        "displayText": "344を無効にします。",
+                                        "data": "{\"type\":\"activateWord\",\"payload\":{\"word\":{\"_value\":\"344\",\"_active\":false}}}"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-off.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "344",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "無効化",
+                                        "displayText": "136を無効にします。",
+                                        "data": "{\"type\":\"activateWord\",\"payload\":{\"word\":{\"_value\":\"136\",\"_active\":false}}}"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-off.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "136",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "backgroundColor": "#eeeeee",
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "無効化",
+                                        "displayText": "400を無効にします。",
+                                        "data": "{\"type\":\"activateWord\",\"payload\":{\"word\":{\"_value\":\"400\",\"_active\":false}}}"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-off.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "400",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "無効化",
+                                        "displayText": "330を無効にします。",
+                                        "data": "{\"type\":\"activateWord\",\"payload\":{\"word\":{\"_value\":\"330\",\"_active\":false}}}"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-off.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "330",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "backgroundColor": "#eeeeee",
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "有効化",
+                                        "displayText": "741を有効にします。",
+                                        "data": "{\"type\":\"inactivateWord\",\"payload\":{\"word\":{\"_value\":\"741\",\"_active\":true}}}"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-on.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "741",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "無効化",
+                                        "displayText": "334を無効にします。",
+                                        "data": "{\"type\":\"activateWord\",\"payload\":{\"word\":{\"_value\":\"334\",\"_active\":false}}}"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-off.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "334",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "backgroundColor": "#eeeeee",
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "無効化",
+                                        "displayText": "382を無効にします。",
+                                        "data": "{\"type\":\"activateWord\",\"payload\":{\"word\":{\"_value\":\"382\",\"_active\":false}}}"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-off.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "382",
+                                                    "weight": "bold"
+                                                }
+                                            ],
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "paddingAll": "lg",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "有効化",
+                                        "displayText": "507を有効にします。",
+                                        "data": "{\"type\":\"inactivateWord\",\"payload\":{\"word\":{\"_value\":\"507\",\"_active\":true}}}"
+                                    },
+                                    "spacing": "md",
+                                    "contents": [
+                                        {
+                                            "type": "icon",
+                                            "url": "https://tirashi-observer-bot.web.app/tinified/toggle-on.png",
+                                            "size": "24px",
+                                            "offsetTop": "3px"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "offsetTop": "-3px",
+                                            "contents": [
+                                                {
+                                                    "type": "span",
+                                                    "text": "507",
                                                     "weight": "bold"
                                                 }
                                             ],

@@ -1,16 +1,19 @@
-type InfrastructureErrorFrom = 'WordDoesNotExist' | 'SheetDoesNotExist'
+export type InfrastructureErrorFrom =
+    | 'WordDoesNotExist'
+    | 'SheetDoesNotExist'
+    | 'ScriptPropertyDoesNotExist'
 
-class InfrastructureError extends Error {
-    #from?: InfrastructureErrorFrom
+export class InfrastructureError extends Error {
+    private readonly from: InfrastructureErrorFrom
 
-    constructor(message: string, from?: InfrastructureErrorFrom) {
+    constructor(message: string, from: InfrastructureErrorFrom) {
         super(message)
-        this.#from = from
+        this.from = from
         Object.setPrototypeOf(this, InfrastructureError.prototype)
     }
 
     getFrom(): InfrastructureErrorFrom | undefined {
-        return this.#from
+        return this.from
     }
 
     static WordDoesNotExist(wordValue: string): InfrastructureError {
@@ -26,9 +29,16 @@ class InfrastructureError extends Error {
             'SheetDoesNotExist'
         )
     }
+
+    static ScriptPropertyDoesNotExist(key: string): InfrastructureError {
+        return new InfrastructureError(
+            `「${key}」は存在しないスクリプトプロパティです。`,
+            'ScriptPropertyDoesNotExist'
+        )
+    }
 }
 
-class UseCaseWarning extends Error {
+export class UseCaseWarning extends Error {
     constructor(message: string) {
         super(message)
         Object.setPrototypeOf(this, UseCaseWarning.prototype)

@@ -1,3 +1,3 @@
-const SHEET_NAMES = Object.freeze({
+export const SHEET_NAMES = Object.freeze({
     Words: 'Words'
 })
