@@ -1,5 +1,7 @@
-export const LineMessage = Object.freeze({
-    create(iconUrl: string, message: string) {
+import type { LineMessage } from '../services/line-message'
+
+export const lineMessage: LineMessage = Object.freeze({
+    build(iconUrl: string, message: string) {
         return {
             messages: [
                 {
@@ -51,20 +53,20 @@ export const LineMessage = Object.freeze({
             ]
         }
     },
-    Success(message: string) {
-        return this.create(
+    createSuccess(message: string) {
+        return this.build(
             'https://tirashi-observer-bot.web.app/tinified/circle-check.png',
             message
         )
     },
-    Warning(message: string) {
-        return this.create(
+    createWarning(message: string) {
+        return this.build(
             'https://tirashi-observer-bot.web.app/tinified/circle-exclamation.png',
             message
         )
     },
-    Error(message: string) {
-        return this.create(
+    createError(message: string) {
+        return this.build(
             'https://tirashi-observer-bot.web.app/tinified/circle-x.png',
             message
         )

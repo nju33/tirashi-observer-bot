@@ -1,5 +1,5 @@
 import axios, { AxiosInstance } from 'axios'
-import { LineMessage } from './line-message'
+import { lineMessage } from './line-message'
 
 describe('LineMessage', () => {
     let instance: AxiosInstance
@@ -15,7 +15,7 @@ describe('LineMessage', () => {
     })
 
     it.skip('properly send a success message', async () => {
-        const data = LineMessage.Success('Success')
+        const data = lineMessage.createSuccess('Success')
 
         await instance.post(
             'https://api.line.me/v2/bot/message/broadcast',
@@ -24,7 +24,7 @@ describe('LineMessage', () => {
     })
 
     it.skip('properly send a warning message', async () => {
-        const data = LineMessage.Warning('Warning')
+        const data = lineMessage.createWarning('Warning')
 
         await instance.post(
             'https://api.line.me/v2/bot/message/broadcast',
@@ -33,7 +33,7 @@ describe('LineMessage', () => {
     })
 
     it.skip('properly send a error message', async () => {
-        const data = LineMessage.Error('Error')
+        const data = lineMessage.createError('Error')
 
         await instance.post(
             'https://api.line.me/v2/bot/message/broadcast',

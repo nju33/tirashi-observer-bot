@@ -1,24 +1,44 @@
-export function registerWord(): void {}
+import { ChatQucikReplyTexts as _ChatQucikReplyText } from '../domains/chat'
+import { TobWord as _TobWord } from '../domains/word'
+import type { WordSheetRepository } from '../domains/word'
+import type { ScriptProperties } from '../domains/script-properties'
+import type { ReplyMessages } from '../services/line-fetch'
+import type { LineMessage } from '../services/line-message'
 
-// export function registerWords(
-//     { message }: RegisterWordEventParameter['payload'],
-//     fetch: typeof fetchText,
-//     wordSheet: WordSheetRepository,
-//     lineMessage: typeof LineMessage
-// ): void {
-//     const word = constructWord(message)
+const ChatQucikReplyTexts: typeof _ChatQucikReplyText =
+    typeof _ChatQucikReplyText === 'undefined'
+        ? exports.ChatQucikReplyTexts
+        : _ChatQucikReplyText
+const TobWord: typeof _TobWord =
+    typeof _TobWord === 'undefined' ? exports.TobWord : _TobWord
 
-//     // if (wordSheet.has(word)) {
-//     //     const data = lineMessage.Warning(`「${word.value}」は既に登録済みです`)
+export function registerWord({
+    wordValue,
+    replyToken,
 
-//     //     fetch('url', {
-//     //         method: 'get',
-//     //         headers: { 'content-type': 'application/json' },
-//     //         data: JSON.stringify(data)
-//     //     })
+    wordSheetRepository,
+    fetch,
+    scriptProperties,
 
-//     //     return
-//     // }
+    lineMessage
+}: {
+    wordValue: string
+    replyToken: string
 
-//     // wordSheet.insert(word)
-// }
+    wordSheetRepository: WordSheetRepository
+    fetch: ReplyMessages
+    scriptProperties: ScriptProperties
+
+    lineMessage: LineMessage
+}): void {
+    const word = new TobWord(wordValue)
+    const lineToken = scriptProperties.getLineToken().get()
+    wordSheetRepository.insert(word)
+
+    const data = lineMessage.createSuccess(
+        `${ChatQucikReplyTexts.Create(wordValue)}しました！`
+    )
+    data.replyToken = replyToken
+
+    fetch(JSON.stringify(data), lineToken)
+}

@@ -1,7 +1,7 @@
 import type { WordSheetRepository } from '../domains/word'
-import type { WordActionMessage } from '../services/word-action-message'
 import type { ScriptProperties } from '../domains/script-properties'
 import type { ReplyMessages } from '../services/line-fetch'
+import type { ChatActionReplyMessage } from '../services/chat-action-reply-message'
 import { InfrastructureError as _InfrastructureError } from '../error'
 
 const InfrastructureError: typeof _InfrastructureError =
@@ -9,19 +9,30 @@ const InfrastructureError: typeof _InfrastructureError =
         ? exports.InfrastructureError
         : _InfrastructureError
 
-export function chat(
-    message: string,
-    replyToken: string,
-    fetch: ReplyMessages,
-    wordSheet: WordSheetRepository,
-    wordActionMessage: WordActionMessage,
+export function chat({
+    message,
+    replyToken,
+
+    fetch,
+    wordSheetRepository,
+    scriptProperties,
+
+    chatActionReplyMessage
+}: {
+    message: string
+    replyToken: string
+
+    fetch: ReplyMessages
+    wordSheetRepository: WordSheetRepository
     scriptProperties: ScriptProperties
-): void {
+
+    chatActionReplyMessage: ChatActionReplyMessage
+}): void {
     const lineToken = scriptProperties.getLineToken().get()
     let wordActive: boolean
 
     try {
-        const wordSheetValue = wordSheet.get(message)
+        const wordSheetValue = wordSheetRepository.get(message)
         wordActive = wordSheetValue[1]
     } catch (error) {
         if (!(error instanceof InfrastructureError)) {
@@ -29,7 +40,7 @@ export function chat(
         }
 
         if (error.getFrom() === 'WordDoesNotExist') {
-            const data = wordActionMessage.create(message, {
+            const data = chatActionReplyMessage.create(message, {
                 exists: false,
                 active: false
             })
@@ -41,7 +52,7 @@ export function chat(
         return
     }
 
-    const data = wordActionMessage.create(message, {
+    const data = chatActionReplyMessage.create(message, {
         exists: true,
         active: wordActive
     })

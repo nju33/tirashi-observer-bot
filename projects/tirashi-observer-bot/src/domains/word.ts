@@ -35,7 +35,8 @@ export class TobWord implements Word, ToSheetValue {
     }
 
     toString(): string {
-        return this.toSheetValue().join(',')
+        // In GAS, `to_text(boolean)` is to be `TRUE` or `FALSE`
+        return [this.value, this.active ? 'TRUE' : 'FALSE'].join(',')
     }
 }
 

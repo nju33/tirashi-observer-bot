@@ -1,0 +1,8 @@
+{
+    "Const Imported": {
+        "prefix": ["constimported"],
+        "body": [
+            "const ${1}: typeof _${1} = typeof _${1} === 'undefined' ? exports.${1} : _${1}"
+        ]
+    }
+}

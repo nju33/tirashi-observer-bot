@@ -1,4 +1,18 @@
-import type { WordActionMessage } from '../services/word-action-message'
+import type { JsonValue, JsonObject } from 'type-fest'
+import type { ChatActionReplyMessage } from '../services/chat-action-reply-message'
+import {
+    ChatQuickReplyLabels as _ChatQuickReplyLabels,
+    ChatQucikReplyTexts as _ChatQucikReplyTexts
+} from '../domains/chat'
+
+const ChatQuickReplyLabels: typeof _ChatQuickReplyLabels =
+    typeof _ChatQuickReplyLabels === 'undefined'
+        ? exports.ChatQuickReplyLabels
+        : _ChatQuickReplyLabels
+const ChatQucikReplyTexts: typeof _ChatQucikReplyTexts =
+    typeof _ChatQucikReplyTexts === 'undefined'
+        ? exports.ChatQucikReplyTexts
+        : _ChatQucikReplyTexts
 
 const EMOJIS = Object.freeze({
     // https://cloud.nju33.com/iPGqKfzn0BLIjkLyMXDa
@@ -22,45 +36,45 @@ export function constructQuickReply(
         exists: boolean
         active: boolean
     }
-): import('type-fest').JsonValue {
-    const result = [] as Array<import('type-fest').JsonObject>
-    const toCreateAction: import('type-fest').JsonObject = {
+): JsonValue {
+    const result = [] as JsonObject[]
+    const toCreateAction: JsonObject = {
         type: 'action',
         imageUrl:
             'https://tirashi-observer-bot.web.app/tinified/circle-plus.png',
         action: {
             type: 'message',
-            label: '...を登録',
-            text: `「${value}」を登録'`
+            label: ChatQuickReplyLabels.Create,
+            text: ChatQucikReplyTexts.Create(value)
         }
     }
-    const toActivateAction: import('type-fest').JsonValue = {
+    const toActivateAction: JsonValue = {
         type: 'action',
         imageUrl: 'https://tirashi-observer-bot.web.app/tinified/toggle-on.png',
         action: {
             type: 'message',
-            label: '...を有効化',
-            text: `「${value}」を有効化`
+            label: ChatQuickReplyLabels.Activate,
+            text: ChatQucikReplyTexts.Activate(value)
         }
     }
-    const toInactivateAction: import('type-fest').JsonValue = {
+    const toInactivateAction: JsonValue = {
         type: 'action',
         imageUrl:
             'https://tirashi-observer-bot.web.app/tinified/toggle-off.png',
         action: {
             type: 'message',
-            label: '...を無効化',
-            text: `「${value}」を無効化'`
+            label: ChatQuickReplyLabels.Inactivate,
+            text: ChatQucikReplyTexts.Inactivate(value)
         }
     }
-    const toDeleteAction: import('type-fest').JsonValue = {
+    const toDeleteAction: JsonValue = {
         type: 'action',
         imageUrl:
             'https://tirashi-observer-bot.web.app/tinified/delete-right.png',
         action: {
             type: 'message',
-            label: '...を削除',
-            text: `「${value}」を削除`
+            label: ChatQuickReplyLabels.Delete,
+            text: ChatQucikReplyTexts.Delete(value)
         }
     }
 
@@ -83,7 +97,7 @@ export function constructQuickReply(
     return result
 }
 
-export const wordActionMessage: WordActionMessage = {
+export const chatActionReplyMessage: ChatActionReplyMessage = {
     create(value, flags) {
         return {
             messages: [
