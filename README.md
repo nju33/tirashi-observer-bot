@@ -87,6 +87,7 @@ This project has a lot of code like the one below.
 
 ```ts
 const A: typeof _A = typeof _A === 'undefined' ? exports.A : _A
+// As a side note, the above is registered as a snippet to use typing `constimported` in a `.ts` file.
 ```
 
 Mainly, that reason is for coexistence in standard code on GAS and tests.
