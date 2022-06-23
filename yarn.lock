@@ -6684,6 +6684,8 @@ __metadata:
 "tirashi-observer-bot@workspace:projects/tirashi-observer-bot":
   version: 0.0.0-use.local
   resolution: "tirashi-observer-bot@workspace:projects/tirashi-observer-bot"
+  dependencies:
+    type-fest: ^2.13.1
   languageName: unknown
   linkType: soft
 

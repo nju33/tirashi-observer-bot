@@ -42,6 +42,7 @@ export class TobWord implements Word, ToSheetValue {
 
 export interface WordSheetRepository {
     get: (value: string) => WordSheetValue
+    getAll: () => WordSheetValue[]
     has: (value: string) => boolean
     insert: (value: Word & ToSheetValue) => void
     delete: (value: Word) => void

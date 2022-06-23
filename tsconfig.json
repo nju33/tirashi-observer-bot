@@ -1,10 +1,12 @@
 {
     "compilerOptions": {
+        "target": "ES2016",
         "outDir": "./out",
         "declaration": true,
         "emitDeclarationOnly": true,
         "lib": ["esnext"],
         "strict": true,
+        "moduleResolution": "node",
         "esModuleInterop": false,
         "experimentalDecorators": true
     }

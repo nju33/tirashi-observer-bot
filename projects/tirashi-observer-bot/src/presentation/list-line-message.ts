@@ -1,7 +1,12 @@
 import type { JsonObject } from 'type-fest'
+import { ChatQucikReplyTexts as _ChatQucikReplyTexts } from '../domains/chat'
 import type { ListLineMessage } from '../domains/list-line-message'
 import { EVENT_TYPES as _EVENT_TYPES } from '../event'
 
+const ChatQucikReplyTexts: typeof _ChatQucikReplyTexts =
+    typeof _ChatQucikReplyTexts === 'undefined'
+        ? exports.ChatQucikReplyTexts
+        : _ChatQucikReplyTexts
 const EVENT_TYPES: typeof _EVENT_TYPES =
     typeof _EVENT_TYPES === 'undefined' ? exports.EVENT_TYPES : _EVENT_TYPES
 
@@ -36,10 +41,10 @@ function createLabel(word: CreateParameter[0]): string {
 
 function createDisplayText(word: CreateParameter[0]): string {
     if (word.active) {
-        return `${word.value}を有効にします。`
+        return ChatQucikReplyTexts.Activate(word.value)
     }
 
-    return `${word.value}を無効にします。`
+    return ChatQucikReplyTexts.Inactivate(word.value)
 }
 
 function createData(word: CreateParameter[0]): string {
@@ -50,9 +55,7 @@ function createData(word: CreateParameter[0]): string {
     return JSON.stringify({ type, payload: { word } })
 }
 
-function createToggleIconContent(
-    word: CreateParameter[0]
-): JsonObject {
+function createToggleIconContent(word: CreateParameter[0]): JsonObject {
     const toggleIcon = word.active
         ? 'https://tirashi-observer-bot.web.app/tinified/toggle-on.png'
         : 'https://tirashi-observer-bot.web.app/tinified/toggle-off.png'
@@ -168,4 +171,3 @@ export class TobListLineMessage implements ListLineMessage {
         }
     }
 }
-

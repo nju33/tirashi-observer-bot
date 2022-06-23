@@ -8,7 +8,7 @@ describe('LineMessage', () => {
         instance = axios.create({
             headers: {
                 'Content-Type': 'application/json',
-                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                // eslint-disable-next-line @typescript-eslint/restrict-template-expressions, @typescript-eslint/no-non-null-assertion
                 Authorization: `Bearer ${process.env.LINE_TOKEN!}`
             }
         })

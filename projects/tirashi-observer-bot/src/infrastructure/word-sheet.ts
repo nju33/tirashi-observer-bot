@@ -1,4 +1,4 @@
-import type { WordSheetRepository } from '../domains/word'
+import type { WordSheetRepository, WordSheetValue } from '../domains/word'
 import { InfrastructureError as _InfrastructureError } from '../error'
 
 const InfrastructureError: typeof _InfrastructureError =
@@ -26,10 +26,21 @@ export class TobWordSheetRepository implements WordSheetRepository {
             throw InfrastructureError.WordDoesNotExist(value)
         }
 
-        return sheet.getRange(next.getRow(), 2, 1, 2).getValues()[0] as [
-            string,
-            boolean
-        ]
+        return sheet
+            .getRange(next.getRow(), 2, 1, 2)
+            .getValues()[0] as WordSheetValue
+    }
+
+    getAll(): ReturnType<WordSheetRepository['getAll']> {
+        const sheet = this.getSheet()
+        const lastRow = sheet.getLastRow()
+        const range = sheet.getRange(2, 1, lastRow, 2)
+        const rows = range.getValues()
+
+        return rows.filter((row) => {
+            // The value of a blank cell of the Spreadsheet is just `''`
+            return row[0] !== '' && row[1] !== ''
+        }) as WordSheetValue[]
     }
 
     has(

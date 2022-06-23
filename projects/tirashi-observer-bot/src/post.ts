@@ -5,6 +5,7 @@ import { tobScriptPropertiesValueFactory as _tobScriptPropertiesValueFactory } f
 import { TobWordSheetRepository as _TobWordSheetRepository } from './infrastructure/word-sheet'
 import { lineMessage as _lineMessage } from './presentation/line-message'
 import { chatActionReplyMessage as _chatActionReplyMessage } from './presentation/chat-action-reply-message'
+import { TobListLineMessage as _TobListLineMessage } from './presentation/list-line-message'
 import {
     matchCreateQuickReplyOfChat as _matchCreateQuickReplyOfChat,
     matchActivateQuickReplyOfChat as _matchActivateQuickReplyOfChat,
@@ -15,6 +16,7 @@ import { replyMessages as _replyMessages } from './infrastructure/line-fetch'
 import { chat as _chat } from './usecases/chat'
 import { registerWord as _registerWord } from './usecases/register-word'
 import { deleteRegisteredWords as _deleteRegisteredWords } from './usecases/delete-registered-words'
+import { listRegisteredWords as _listRegisteredWords } from './usecases/list-registered-words'
 
 const isLineMessageEvent: typeof _isLineMessageEvent =
     typeof _isLineMessageEvent === 'undefined'
@@ -38,6 +40,10 @@ const chatActionReplyMessage: typeof _chatActionReplyMessage =
     typeof _chatActionReplyMessage === 'undefined'
         ? exports.chatActionReplyMessage
         : _chatActionReplyMessage
+const TobListLineMessage: typeof _TobListLineMessage =
+    typeof _TobListLineMessage === 'undefined'
+        ? exports.TobListLineMessage
+        : _TobListLineMessage
 const matchCreateQuickReplyOfChat: typeof _matchCreateQuickReplyOfChat =
     typeof _matchCreateQuickReplyOfChat === 'undefined'
         ? exports.matchCreateQuickReplyOfChat
@@ -65,6 +71,10 @@ const deleteRegisteredWords: typeof _deleteRegisteredWords =
     typeof _deleteRegisteredWords === 'undefined'
         ? exports.deleteRegisteredWords
         : _deleteRegisteredWords
+const listRegisteredWords: typeof _listRegisteredWords =
+    typeof _listRegisteredWords === 'undefined'
+        ? exports.listRegisteredWords
+        : _listRegisteredWords
 
 function ok(): GoogleAppsScript.Content.TextOutput {
     return ContentService.createTextOutput('ok')
@@ -87,6 +97,20 @@ export function doPost(
             tobScriptPropertiesValueFactory,
             PropertiesService
         )
+
+        if (/^一覧/.test(message)) {
+            const listLineMessage = new TobListLineMessage()
+            listRegisteredWords({
+                replyToken,
+                wordSheetRepository,
+                scriptProperties,
+                lineMessage,
+                listLineMessage,
+                fetch: replyMessages
+            })
+            return ok()
+        }
+
         const matchedCreateQuickReplyOfChat =
             matchCreateQuickReplyOfChat(message)
         const matchedActivateQuickReplyOfChat =
