@@ -27,6 +27,6 @@ export function _initSheets(): void {
         '=arrayformula(if(isblank(B1:B), "", t(B1:B) & "," & to_text(C1:C)))'
     )
 
-    // delete 2nd and subsequent lines to equal actual row length and `Sheet#getRow()`
+    // delete 2nd and subsequent lines to equal actual row length and `Sheet#getLastRow()`
     sheet.deleteRows(2, sheet.getMaxRows() - 1)
 }
