@@ -1,4 +1,4 @@
-import { SHEET_NAMES as _SHEET_NAMES } from './constants'
+import { SHEET_NAMES as _SHEET_NAMES } from './projects/tirashi-observer-bot/src/constants'
 import { InfrastructureError as _InfrastructureError } from './projects/tirashi-observer-bot/src/error'
 
 const SHEET_NAMES: typeof _SHEET_NAMES =
@@ -22,8 +22,8 @@ export function _initSheets(): void {
     }
 
     sheet.getRange(1, 1).setFormula(
-        // All of A colum values are made to concatenate the same line’s B, C and D.
+        // All of A colum values are made to concatenate the same line’s B and C.
         // But, it is to be blank if B is blank
-        '=arrayformula(if(isblank(B1:B), "", to_text(B1:B) & "," & t(C1:C) & "," & to_text(D1:D)))'
+        '=arrayformula(if(isblank(B1:B), "", t(B1:B) & "," & to_text(C1:C)))'
     )
 }

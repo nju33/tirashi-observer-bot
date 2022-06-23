@@ -8,7 +8,9 @@
         "sheets.init": "clasp run _initSheets --params",
         "push": "clasp push",
         "deploy": "clasp deploy",
+        "update": ": The latest deployment updates; clasp deploy -i$(yarn deployments | tail -n1 | cut -d' ' -f2)",
         "deployments": "clasp deployments",
-        "open": "clasp open"
+        "open": "clasp open",
+        "runScript": "clasp run"
     }
 }

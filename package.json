@@ -6,7 +6,7 @@
     "scripts": {
         "build": "tsc",
         "test": "jest",
-        "bot:": "yarn workspace tirashi-observer-bot"
+        "tob:": "yarn workspace tirashi-observer-bot"
     },
     "devDependencies": {
         "@aryli/create-that.preset": "0.0.5",

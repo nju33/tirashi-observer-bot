@@ -77,7 +77,7 @@ describe('WordSheet#insert', () => {
 
         wordSheet.insert(word)
 
-        expect(setValues).toBeCalledWith(word.toSheetValue())
+        expect(setValues).toBeCalledWith([word.toSheetValue()])
     })
 })
 

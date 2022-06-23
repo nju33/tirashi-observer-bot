@@ -5,34 +5,7 @@ export interface Word {
     active: boolean
 }
 
-export function reconstructWord(
-    value: string,
-    active: boolean
-): Readonly<Word & ToSheetValue> {
-    return Object.freeze({
-        value,
-        active,
-        toSheetValue() {
-            return [this.value, this.active]
-        },
-        toString(): string {
-            return this.toSheetValue().join(',')
-        }
-    })
-}
-
-export function constructWord(value: string): Readonly<Word & ToSheetValue> {
-    return Object.freeze({
-        value,
-        active: true,
-        toSheetValue() {
-            return [this.value, this.active]
-        },
-        toString(): string {
-            return this.toSheetValue().join(',')
-        }
-    })
-}
+export type WordSheetValue = [Word['value'], Word['active']]
 
 export class TobWord implements Word, ToSheetValue {
     private readonly _value: string
@@ -57,7 +30,7 @@ export class TobWord implements Word, ToSheetValue {
         return this._active
     }
 
-    toSheetValue(): [string, boolean] {
+    toSheetValue(): WordSheetValue {
         return [this.value, this.active]
     }
 
@@ -67,7 +40,7 @@ export class TobWord implements Word, ToSheetValue {
 }
 
 export interface WordSheetRepository {
-    get: (value: string) => string[]
+    get: (value: string) => WordSheetValue
     has: (value: string) => boolean
     insert: (value: Word & ToSheetValue) => void
     delete: (value: Word) => void

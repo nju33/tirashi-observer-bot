@@ -17,23 +17,35 @@ export function chat(
     wordActionMessage: WordActionMessage,
     scriptProperties: ScriptProperties
 ): void {
+    const lineToken = scriptProperties.getLineToken().get()
+    let wordActive: boolean
+
     try {
-        const [wordValue, wordActive] = wordSheet.get(message)
+        const wordSheetValue = wordSheet.get(message)
+        wordActive = wordSheetValue[1]
     } catch (error) {
         if (!(error instanceof InfrastructureError)) {
             throw error
         }
 
         if (error.getFrom() === 'WordDoesNotExist') {
-            const lineToken = scriptProperties.getLineToken().get()
             const data = wordActionMessage.create(message, {
                 exists: false,
                 active: false
             })
-
             data.replyToken = replyToken
 
             fetch(JSON.stringify(data), lineToken)
         }
+
+        return
     }
+
+    const data = wordActionMessage.create(message, {
+        exists: true,
+        active: wordActive
+    })
+    data.replyToken = replyToken
+
+    fetch(JSON.stringify(data), lineToken)
 }

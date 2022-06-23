@@ -26,7 +26,10 @@ export class TobWordSheetRepository implements WordSheetRepository {
             throw InfrastructureError.WordDoesNotExist(value)
         }
 
-        return sheet.getRange(next.getRow(), 2, 0, 2).getValues()[0]
+        return sheet.getRange(next.getRow(), 2, 1, 2).getValues()[0] as [
+            string,
+            boolean
+        ]
     }
 
     has(
@@ -45,8 +48,8 @@ export class TobWordSheetRepository implements WordSheetRepository {
         const insertingValues = word.toSheetValue()
 
         sheet
-            .getRange(lastRow + 1, insertingValues.length)
-            .setValues(insertingValues as any)
+            .getRange(lastRow + 1, 2, 1, insertingValues.length)
+            .setValues([insertingValues])
     }
 
     delete(word: Parameters<WordSheetRepository['delete']>[0]): void {
