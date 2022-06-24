@@ -5,3 +5,7 @@ export interface User {
 export class TobUser implements User {
     constructor(public id: string) {}
 }
+
+export interface UserSheetRepository {
+    getAll: () => string[]
+}

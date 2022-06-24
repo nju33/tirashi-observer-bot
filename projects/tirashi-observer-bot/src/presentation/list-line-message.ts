@@ -129,7 +129,7 @@ function createBubble(
                       type: 'text',
                       size: 'sm',
                       color: '#666666',
-                      text: 'ワードをタップ（クリック）すると再び有効、もしくは無効にできます。',
+                      text: '言葉をタップ（クリック）すると再び有効、もしくは無効にできます。',
                       wrap: true
                   }
               ]
@@ -169,7 +169,7 @@ export class TobListLineMessage implements ListLineMessage {
             messages: [
                 {
                     type: 'flex',
-                    altText: 'ワード一覧',
+                    altText: '言葉一覧',
                     contents: {
                         type: 'carousel',
                         contents: bubbles

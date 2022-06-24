@@ -1,0 +1,65 @@
+{
+    "messages": [
+        {
+            "type": "flex",
+            "altText": "foo",
+            "contents": {
+                "type": "bubble",
+                "styles": {
+                    "hero": {
+                        "backgroundColor": "#333333"
+                    }
+                },
+                "header": {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                        {
+                            "type": "text",
+                            "text": "掲載情報と言葉が一致しました！",
+                            "weight": "bold",
+                            "wrap": true
+                        }
+                    ]
+                },
+                "hero": {
+                    "type": "box",
+                    "layout": "vertical",
+                    "paddingAll": "md",
+                    "contents": [
+                        {
+                            "type": "image",
+                            "size": "full",
+                            "url": "https://dsc.cloud/acd2c9/fixture.jpeg",
+                            "aspectRatio": "1.51:1",
+                            "action": {
+                                "type": "uri",
+                                "label": "チラシを見る",
+                                "uri": "https://dsc.cloud/acd2c9/fixture.jpeg"
+                            }
+                        }
+                    ]
+                },
+                "body": {
+                    "type": "box",
+                    "layout": "vertical",
+                    "spacing": "sm",
+                    "contents": [
+                        {
+                            "type": "text",
+                            "text": "- レタス"
+                        },
+                        {
+                            "type": "text",
+                            "text": "- たまご"
+                        },
+                        {
+                            "type": "text",
+                            "text": "- トマト"
+                        }
+                    ]
+                }
+            }
+        }
+    ]
+}

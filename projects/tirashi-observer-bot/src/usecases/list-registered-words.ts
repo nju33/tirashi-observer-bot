@@ -34,7 +34,7 @@ export function listRegisteredWords({
 
     if (wordSheetValues.length === 0) {
         const data = lineMessage.createWarning(
-            '登録されているワードが１件もありません。'
+            '登録されている言葉が１件もありません。'
         )
         data.replyToken = replyToken
 

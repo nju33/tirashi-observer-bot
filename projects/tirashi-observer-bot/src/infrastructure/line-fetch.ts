@@ -1,8 +1,5 @@
 import { fetchText as _fetchText } from './fetch'
-import type {
-    ReplyMessages,
-    SendBroadCastMessage
-} from '../services/line-fetch'
+import type { ReplyMessages, PushMessages } from '../services/line-fetch'
 
 const fetchText: typeof _fetchText =
     typeof _fetchText === 'undefined' ? exports.fetchText : _fetchText
@@ -24,13 +21,13 @@ export const replyMessages: ReplyMessages = (data, bearerToken) => {
 }
 
 /**
- * https://developers.line.biz/ja/reference/messaging-api/#send-broadcast-message
+ * https://developers.line.biz/en/reference/messaging-api/#send-push-message
  */
-export const sendBroadcastMessage: SendBroadCastMessage = (
+export const pushMessages: PushMessages = (
     data: string,
     bearerToken: string
 ) => {
-    const URL = 'https://api.line.me/v2/bot/message/broadcast'
+    const URL = 'https://api.line.me/v2/bot/message/push'
 
     return fetchText(URL, {
         method: 'post',
