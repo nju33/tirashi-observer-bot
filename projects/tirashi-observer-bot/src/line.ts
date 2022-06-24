@@ -4,6 +4,10 @@
 interface LineEventCommon {
     replyToken: string
     type: 'message'
+    source: {
+        type: 'user',
+        userId: string
+    }
 }
 
 /**

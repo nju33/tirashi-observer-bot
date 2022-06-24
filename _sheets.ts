@@ -1,12 +1,7 @@
 import { SHEET_NAMES as _SHEET_NAMES } from './projects/tirashi-observer-bot/src/constants'
-import { InfrastructureError as _InfrastructureError } from './projects/tirashi-observer-bot/src/error'
 
 const SHEET_NAMES: typeof _SHEET_NAMES =
     typeof _SHEET_NAMES === 'undefined' ? exports.SHEET_NAMES : _SHEET_NAMES
-const InfrastructureError: typeof _InfrastructureError =
-    typeof _InfrastructureError === 'undefined'
-        ? exports.InfrastructureError
-        : _InfrastructureError
 
 /**
  * Initialize sheets of the parent of a GAS script
@@ -15,18 +10,71 @@ const InfrastructureError: typeof _InfrastructureError =
  */
 export function _initSheets(): void {
     const spreadsheet = SpreadsheetApp.getActive()
-    const sheet = spreadsheet.getSheetByName(SHEET_NAMES.Words)
+
+    _initWords(spreadsheet)
+    _initUsers(spreadsheet)
+    _initMirroredWordsButIgnoringA(spreadsheet)
+    _initWordsEachUsers(spreadsheet)
+}
+
+function getSheet(
+    name: string,
+    spreadsheet: GoogleAppsScript.Spreadsheet.Spreadsheet
+): GoogleAppsScript.Spreadsheet.Sheet {
+    const sheet = spreadsheet.getSheetByName(name)
 
     if (sheet == null) {
-        throw InfrastructureError.SheetDoesNotExist(SHEET_NAMES.Words)
+        return spreadsheet.insertSheet(name)
     }
+
+    return sheet
+}
+
+function _initWords(
+    spreadsheet: GoogleAppsScript.Spreadsheet.Spreadsheet
+): void {
+    const sheet = getSheet(SHEET_NAMES.Words, spreadsheet)
 
     sheet.getRange(1, 1).setFormula(
         // All of A colum values are made to concatenate the same line’s B and C.
         // But, it is to be blank if B is blank
-        '=arrayformula(if(isblank(B1:B), "", t(B1:B) & "," & to_text(C1:C)))'
+        //
+        // B: words
+        // C: userId
+        // (D): active
+        '=arrayformula(if(isblank(B1:B), "", t(B1:B) & "," & t(C1:C)))'
     )
 
     // delete 2nd and subsequent lines to equal actual row length and `Sheet#getLastRow()`
     sheet.deleteRows(2, sheet.getMaxRows() - 1)
+}
+
+function _initUsers(
+    spreadsheet: GoogleAppsScript.Spreadsheet.Spreadsheet
+): void {
+    const sheet = getSheet(SHEET_NAMES.Users, spreadsheet)
+
+    sheet
+        .getRange(1, 1)
+        .setFormula('=sort(unique(index(Words!B:D, 0, 2)), 1, true)')
+}
+
+function _initMirroredWordsButIgnoringA(
+    spreadsheet: GoogleAppsScript.Spreadsheet.Spreadsheet
+): void {
+    const sheet = getSheet(SHEET_NAMES.MirroredWordsButIgnoringA, spreadsheet)
+
+    sheet.getRange(1, 1).setFormula('=index(Words!B2:D)')
+}
+
+function _initWordsEachUsers(
+    spreadsheet: GoogleAppsScript.Spreadsheet.Spreadsheet
+): void {
+    const sheet = getSheet(SHEET_NAMES.WordsEachUsers, spreadsheet)
+
+    sheet
+        .getRange(1, 1)
+        .setFormula(
+            '=arrayformula(concatenateActiveWords(Users!A1:A, MirroredWordsButIgnoringA!A1:C))'
+        )
 }

@@ -33,27 +33,27 @@ function sliceWords<T>(words: T[]): T[][] {
 
 function createLabel(word: CreateParameter[0]): string {
     if (word.active) {
-        return '有効化'
+        return '無効化'
     }
 
-    return '無効化'
+    return '有効化'
 }
 
 function createDisplayText(word: CreateParameter[0]): string {
     if (word.active) {
-        return ChatQucikReplyTexts.Activate(word.value)
+        return ChatQucikReplyTexts.Inactivate(word.value)
     }
 
-    return ChatQucikReplyTexts.Inactivate(word.value)
+    return ChatQucikReplyTexts.Activate(word.value)
 }
 
-function createData(word: CreateParameter[0]): string {
-    const type = word.active
-        ? EVENT_TYPES.inactivateWord
-        : EVENT_TYPES.activateWord
-
-    return JSON.stringify({ type, payload: { word } })
-}
+// function createData(word: CreateParameter[0]): string {
+//     const type = word.active
+//         ? EVENT_TYPES.inactivateWord
+//         : EVENT_TYPES.activateWord
+//
+//     return JSON.stringify({ type, payload: { word } })
+// }
 
 function createToggleIconContent(word: CreateParameter[0]): JsonObject {
     const toggleIcon = word.active
@@ -73,11 +73,19 @@ function createLine(
     isOdd: boolean
 ): CreateReturnType {
     const oddProperties = isOdd ? { backgroundColor: '#eeeeee' } : {}
+    // const action = {
+    //     type: 'postback',
+    //     label: createLabel(word),
+    //     displayText: createDisplayText(word),
+    //     data: createData(word)
+    // }
     const action = {
-        type: 'postback',
-        label: createLabel(word),
-        displayText: createDisplayText(word),
-        data: createData(word)
+        type: 'message',
+        // label: createLabnel(word),
+        // text: createDisplayText(word)
+        label: word.value,
+        text: word.value
+        // data: createData(word)
     }
     const lineText = {
         type: 'text',

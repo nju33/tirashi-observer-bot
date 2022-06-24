@@ -11,6 +11,7 @@ const InfrastructureError: typeof _InfrastructureError =
 
 export function chat({
     message,
+    userId,
     replyToken,
 
     fetch,
@@ -20,6 +21,7 @@ export function chat({
     chatActionReplyMessage
 }: {
     message: string
+    userId: string
     replyToken: string
 
     fetch: ReplyMessages
@@ -32,8 +34,8 @@ export function chat({
     let wordActive: boolean
 
     try {
-        const wordSheetValue = wordSheetRepository.get(message)
-        wordActive = wordSheetValue[1]
+        const wordSheetValue = wordSheetRepository.get(message, userId)
+        wordActive = wordSheetValue[2]
     } catch (error) {
         if (!(error instanceof InfrastructureError)) {
             throw error

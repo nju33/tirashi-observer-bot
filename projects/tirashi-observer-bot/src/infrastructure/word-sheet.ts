@@ -1,6 +1,9 @@
-import type { WordSheetRepository, WordSheetValue } from '../domains/word'
+import type { Word, WordSheetRepository, WordSheetValue } from '../domains/word'
 import { InfrastructureError as _InfrastructureError } from '../error'
+import { SHEET_NAMES as _SHEET_NAMES } from '../constants'
 
+const SHEET_NAMES: typeof _SHEET_NAMES =
+    typeof _SHEET_NAMES === 'undefined' ? exports.SHEET_NAMES : _SHEET_NAMES
 const InfrastructureError: typeof _InfrastructureError =
     typeof _InfrastructureError === 'undefined'
         ? exports.InfrastructureError
@@ -16,10 +19,11 @@ export class TobWordSheetRepository implements WordSheetRepository {
     ) {}
 
     get(
-        value: Parameters<WordSheetRepository['has']>[0]
+        value: Parameters<WordSheetRepository['get']>[0],
+        userId: Parameters<WordSheetRepository['get']>[1]
     ): ReturnType<WordSheetRepository['get']> {
         const sheet = this.getSheet()
-        const textFinder = sheet.createTextFinder(value)
+        const textFinder = sheet.createTextFinder(this.getKey(value, userId))
         const next = textFinder.findNext()
 
         if (next == null) {
@@ -27,45 +31,68 @@ export class TobWordSheetRepository implements WordSheetRepository {
         }
 
         return sheet
-            .getRange(next.getRow(), 2, 1, 2)
+            .getRange(...this.getRangeValues(next.getRow()))
             .getValues()[0] as WordSheetValue
     }
 
-    getAll(): ReturnType<WordSheetRepository['getAll']> {
+    getAll(
+        userId: Parameters<WordSheetRepository['getAll']>[0]
+    ): ReturnType<WordSheetRepository['getAll']> {
         const sheet = this.getSheet()
-        const lastRow = sheet.getLastRow()
-        const range = sheet.getRange(2, 1, lastRow, 2)
-        const rows = range.getValues()
+        const textFinder = sheet.createTextFinder(this.getKey('', userId))
+        const ranges = textFinder.findAll()
 
-        return rows.filter((row) => {
-            // The value of a blank cell of the Spreadsheet is just `''`
-            return row[0] !== '' && row[1] !== ''
-        }) as WordSheetValue[]
+        return ranges.map((range) => {
+            const rangeValues = this.getRangeValues(range.getRow())
+            return sheet
+                .getRange(...rangeValues)
+                .getValues()[0] as WordSheetValue
+        })
     }
 
-    has(
-        value: Parameters<WordSheetRepository['has']>[0]
-    ): ReturnType<WordSheetRepository['has']> {
-        const sheet = this.getSheet()
-        const textFinder = sheet.createTextFinder(value)
-        const next = textFinder.findNext()
+    // has(
+    //     value: Parameters<WordSheetRepository['has']>[0]
+    // ): ReturnType<WordSheetRepository['has']> {
+    //     const sheet = this.getSheet()
+    //     const textFinder = sheet.createTextFinder(value)
+    //     const next = textFinder.findNext()
 
-        return next != null
-    }
+    //     return next != null
+    // }
 
-    insert(word: Parameters<WordSheetRepository['insert']>[0]): void {
+    insert(
+        word: Parameters<WordSheetRepository['insert']>[0]
+    ): ReturnType<WordSheetRepository['insert']> {
         const sheet = this.getSheet()
         const lastRow = sheet.getLastRow()
         const insertingValues = word.toSheetValue()
 
         sheet
-            .getRange(lastRow + 1, 2, 1, insertingValues.length)
+            .getRange(...this.getRangeValues(lastRow + 1))
             .setValues([insertingValues])
     }
 
-    delete(word: Parameters<WordSheetRepository['delete']>[0]): void {
+    update(
+        word: Parameters<WordSheetRepository['update']>[0]
+    ): ReturnType<WordSheetRepository['update']> {
         const sheet = this.getSheet()
-        const textFinder = sheet.createTextFinder(word.value)
+        const textFinder = sheet.createTextFinder(this.getKey(word))
+        const next = textFinder.findNext()
+
+        if (next == null) {
+            throw InfrastructureError.WordDoesNotExist(word.value)
+        }
+
+        sheet
+            .getRange(...this.getRangeValues(next.getRow()))
+            .setValues([word.toSheetValue()])
+    }
+
+    delete(
+        word: Parameters<WordSheetRepository['delete']>[0]
+    ): ReturnType<WordSheetRepository['delete']> {
+        const sheet = this.getSheet()
+        const textFinder = sheet.createTextFinder(this.getKey(word))
         const next = textFinder.findNext()
 
         if (next == null) {
@@ -75,11 +102,21 @@ export class TobWordSheetRepository implements WordSheetRepository {
         sheet.deleteRow(next.getRow())
     }
 
+    private getKey(value: string, userId: string): string
+    private getKey(word: Word): string
+    private getKey(...args: [string, string] | [Word]): string {
+        if (typeof args[0] === 'string') {
+            return args.join(',')
+        }
+
+        return args[0].toString()
+    }
+
     private getSheet(): Pick<
         GoogleAppsScript.Spreadsheet.Sheet,
         'getLastRow' | 'getRange' | 'createTextFinder' | 'deleteRow'
     > {
-        const sheetName = 'Words'
+        const sheetName = SHEET_NAMES.Words
         const spreadsheet = this.spreadsheetApp.getActive()
         const sheet = spreadsheet.getSheetByName(sheetName)
 
@@ -88,5 +125,10 @@ export class TobWordSheetRepository implements WordSheetRepository {
         }
 
         return sheet
+    }
+
+    private getRangeValues(row: number): [number, number, number, number] {
+        // For example, when the row is 3, the range is to be `B3:D3`
+        return [row, 2, 1, 3]
     }
 }

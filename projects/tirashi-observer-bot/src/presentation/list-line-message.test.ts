@@ -10,6 +10,7 @@ function createDummyWords(): TobWord[] {
 
         return TobWord.reconstruct(
             Math.floor(randomValue * 1000).toString(),
+            'userId',
             Boolean(Math.round(randomValue))
         )
     })

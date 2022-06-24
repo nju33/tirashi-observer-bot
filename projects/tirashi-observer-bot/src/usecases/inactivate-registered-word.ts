@@ -1,6 +1,6 @@
 import { ChatQucikReplyTexts as _ChatQucikReplyText } from '../domains/chat'
 import { TobWord as _TobWord } from '../domains/word'
-import type { WordSheetRepository } from '../domains/word'
+import type { WordSheetRepository, WordSheetValue } from '../domains/word'
 import type { ScriptProperties } from '../domains/script-properties'
 import type { ReplyMessages } from '../services/line-fetch'
 import type { LineMessage } from '../services/line-message'
@@ -12,8 +12,9 @@ const ChatQucikReplyTexts: typeof _ChatQucikReplyText =
 const TobWord: typeof _TobWord =
     typeof _TobWord === 'undefined' ? exports.TobWord : _TobWord
 
-export function deleteRegisteredWords({
+export function inactivateRegisteredWord({
     wordValue,
+    userId,
     replyToken,
 
     wordSheetRepository,
@@ -23,6 +24,7 @@ export function deleteRegisteredWords({
     lineMessage
 }: {
     wordValue: string
+    userId: string
     replyToken: string
 
     wordSheetRepository: WordSheetRepository
@@ -31,12 +33,31 @@ export function deleteRegisteredWords({
 
     lineMessage: LineMessage
 }): void {
-    const word = new TobWord(wordValue)
     const lineToken = scriptProperties.getLineToken().get()
-    wordSheetRepository.delete(word)
+    let wordSheetValue: WordSheetValue
+
+    try {
+        wordSheetValue = wordSheetRepository.get(wordValue, userId)
+    } catch {
+        const data = lineMessage.createWarning(
+            `「${wordValue}」はまだ登録されていません。`
+        )
+        data.replyToken = replyToken
+
+        fetch(JSON.stringify(data), lineToken)
+        return
+    }
+
+    const activatingWord = TobWord.reconstruct(
+        wordSheetValue[0],
+        userId,
+        !wordSheetValue[2]
+    )
+
+    wordSheetRepository.update(activatingWord)
 
     const data = lineMessage.createSuccess(
-        `${ChatQucikReplyTexts.Delete(wordValue)}しました！`
+        `${ChatQucikReplyTexts.Inactivate(wordValue)}しました！`
     )
     data.replyToken = replyToken
 

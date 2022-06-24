@@ -15,8 +15,10 @@ import {
 import { replyMessages as _replyMessages } from './infrastructure/line-fetch'
 import { chat as _chat } from './usecases/chat'
 import { registerWord as _registerWord } from './usecases/register-word'
-import { deleteRegisteredWords as _deleteRegisteredWords } from './usecases/delete-registered-words'
+import { deleteRegisteredWord as _deleteRegisteredWord } from './usecases/delete-registered-word'
 import { listRegisteredWords as _listRegisteredWords } from './usecases/list-registered-words'
+import { activateRegisteredWord as _activateRegisteredWord } from './usecases/activate-registered-word'
+import { inactivateRegisteredWord as _inactivateRegisteredWord } from './usecases/inactivate-registered-word'
 
 const isLineMessageEvent: typeof _isLineMessageEvent =
     typeof _isLineMessageEvent === 'undefined'
@@ -67,14 +69,22 @@ const replyMessages: typeof _replyMessages =
 const chat: typeof _chat = typeof _chat === 'undefined' ? exports.chat : _chat
 const registerWord: typeof _registerWord =
     typeof _registerWord === 'undefined' ? exports.registerWord : _registerWord
-const deleteRegisteredWords: typeof _deleteRegisteredWords =
-    typeof _deleteRegisteredWords === 'undefined'
-        ? exports.deleteRegisteredWords
-        : _deleteRegisteredWords
+const deleteRegisteredWord: typeof _deleteRegisteredWord =
+    typeof _deleteRegisteredWord === 'undefined'
+        ? exports.deleteRegisteredWord
+        : _deleteRegisteredWord
 const listRegisteredWords: typeof _listRegisteredWords =
     typeof _listRegisteredWords === 'undefined'
         ? exports.listRegisteredWords
         : _listRegisteredWords
+const activateRegisteredWord: typeof _activateRegisteredWord =
+    typeof _activateRegisteredWord === 'undefined'
+        ? exports.activateRegisteredWord
+        : _activateRegisteredWord
+const inactivateRegisteredWord: typeof _inactivateRegisteredWord =
+    typeof _inactivateRegisteredWord === 'undefined'
+        ? exports.inactivateRegisteredWord
+        : _inactivateRegisteredWord
 
 function ok(): GoogleAppsScript.Content.TextOutput {
     return ContentService.createTextOutput('ok')
@@ -91,6 +101,7 @@ export function doPost(
 
     if (isLineMessageEvent(event)) {
         const message = event.message.text
+        const userId = event.source.userId
         const replyToken = event.replyToken
         const wordSheetRepository = new TobWordSheetRepository(SpreadsheetApp)
         const scriptProperties = new TobScriptProperties(
@@ -102,6 +113,7 @@ export function doPost(
             const listLineMessage = new TobListLineMessage()
             listRegisteredWords({
                 replyToken,
+                userId,
                 wordSheetRepository,
                 scriptProperties,
                 lineMessage,
@@ -123,6 +135,7 @@ export function doPost(
         if (matchedCreateQuickReplyOfChat != null) {
             registerWord({
                 wordValue: matchedCreateQuickReplyOfChat,
+                userId,
                 replyToken,
                 lineMessage,
                 wordSheetRepository,
@@ -131,12 +144,31 @@ export function doPost(
             })
             return ok()
         } else if (matchedActivateQuickReplyOfChat != null) {
+            activateRegisteredWord({
+                wordValue: matchedActivateQuickReplyOfChat,
+                userId,
+                replyToken,
+                lineMessage,
+                wordSheetRepository,
+                scriptProperties,
+                fetch: replyMessages
+            })
             return ok()
         } else if (matchedInactivateQuickReplyOfChat != null) {
+            inactivateRegisteredWord({
+                wordValue: matchedInactivateQuickReplyOfChat,
+                userId,
+                replyToken,
+                lineMessage,
+                wordSheetRepository,
+                scriptProperties,
+                fetch: replyMessages
+            })
             return ok()
         } else if (matchedDeleteQuickReplyOfChat != null) {
-            deleteRegisteredWords({
+            deleteRegisteredWord({
                 wordValue: matchedDeleteQuickReplyOfChat,
+                userId,
                 replyToken,
                 lineMessage,
                 wordSheetRepository,
@@ -149,6 +181,7 @@ export function doPost(
         try {
             chat({
                 message,
+                userId,
                 replyToken,
                 chatActionReplyMessage,
                 scriptProperties,
@@ -163,18 +196,6 @@ export function doPost(
             )
         }
     }
-
-    // if (parameter.type === EVENT_TYPES.activateWord) {
-    //     console.log('foo')
-    //     return
-    // }
-
-    // if (parameter.type === EVENT_TYPES.inactivateWord) {
-    //     console.log('foo')
-    //     return
-    // }
-
-    // return
 
     return ok()
 }
