@@ -43,19 +43,60 @@
                 "body": {
                     "type": "box",
                     "layout": "vertical",
-                    "spacing": "sm",
                     "contents": [
                         {
                             "type": "text",
-                            "text": "- レタス"
+                            "contents": [
+                                {
+                                    "type": "span",
+                                    "text": "-"
+                                },
+                                {
+                                    "type": "span",
+                                    "text": "　"
+                                },
+                                {
+                                    "type": "span",
+                                    "text": "レタス",
+                                    "weight": "bold"
+                                }
+                            ]
                         },
                         {
                             "type": "text",
-                            "text": "- たまご"
+                            "contents": [
+                                {
+                                    "type": "span",
+                                    "text": "-"
+                                },
+                                {
+                                    "type": "span",
+                                    "text": "　"
+                                },
+                                {
+                                    "type": "span",
+                                    "text": "たまご",
+                                    "weight": "bold"
+                                }
+                            ]
                         },
                         {
                             "type": "text",
-                            "text": "- トマト"
+                            "contents": [
+                                {
+                                    "type": "span",
+                                    "text": "-"
+                                },
+                                {
+                                    "type": "span",
+                                    "text": "　"
+                                },
+                                {
+                                    "type": "span",
+                                    "text": "トマト",
+                                    "weight": "bold"
+                                }
+                            ]
                         }
                     ]
                 }

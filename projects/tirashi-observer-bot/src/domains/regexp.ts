@@ -1,4 +1,4 @@
-export const regexpMaterials = [
+const regexpMaterials = [
     ['あ', 'ア', 'ｱ', 'ぁ', 'ァ', 'ｧ'],
     ['い', 'イ', 'ｲ', 'ぃ', 'ィ', 'ｨ'],
     ['う', 'ウ', 'ｳ', 'ぅ', 'ゥ', 'ｩ'],
@@ -83,18 +83,18 @@ export class TobWordRegexp implements WordRegexp {
         const chunks = registered.split(/\s?&\s?/)
 
         this.values = chunks.map((chunk) => {
-            const chars = registered.split('')
+            const chars = chunk.split('')
             const pattern = chars
                 .map((char) => {
                     return regexpMaterials.find((item) => item.includes(char))
                 })
                 .map((item, i) => {
-                    return item == null ? registered.charAt(i) : item
+                    return item == null ? chunk.charAt(i) : item
                 })
                 .map((item) => {
                     return Array.isArray(item) ? `[${item.join('')}]` : item
                 })
-                .join('|')
+                .join('')
 
             return new RegExp(`(?:${pattern})+`)
         })

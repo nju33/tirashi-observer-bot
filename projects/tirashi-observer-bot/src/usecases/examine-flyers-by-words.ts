@@ -1,9 +1,9 @@
-import type { WordSheetRepository } from '../domains/word'
 import type { PushMessages } from '../services/line-fetch'
 import type { ScriptProperties } from '../domains/script-properties'
 import type { UserSheetRepository } from '../domains/user'
 import type { WordsEachUsersSheetRepository } from '../domains/words-each-users'
 import { TobWordRegexp as _TobWordRegexp } from '../domains/regexp'
+import type { WordsMatchedMessage } from '../services/words-matched-message'
 
 const TobWordRegexp: typeof _TobWordRegexp =
     typeof _TobWordRegexp === 'undefined'
@@ -12,21 +12,22 @@ const TobWordRegexp: typeof _TobWordRegexp =
 
 export function examineFlyersByWords({
     userSheetRepository,
-    wordSheetRepository,
     wordsEachUsersSheetRepository,
     fetch,
-    scriptProperties
+    scriptProperties,
+    wordsMatchedMessage
 }: {
     userSheetRepository: UserSheetRepository
-    wordSheetRepository: WordSheetRepository
     wordsEachUsersSheetRepository: WordsEachUsersSheetRepository
     fetch: PushMessages
     scriptProperties: ScriptProperties
+    wordsMatchedMessage: WordsMatchedMessage
 }): void {
     const userIds = userSheetRepository.getAll()
     const tirashiUrls = scriptProperties.getTirashiUrl().get()
 
     userIds.forEach((userId, index) => {
+        const lineToken = scriptProperties.getLineToken().get()
         // Separated by using comma
         const concatenatedString = wordsEachUsersSheetRepository.get(index)
         const wordValues = concatenatedString.split(',')
@@ -40,8 +41,16 @@ export function examineFlyersByWords({
             })
 
             if (matchedWordRegexps.length > 0) {
-                pushMessages()
-                // TODO: image post by userId
+                const data = wordsMatchedMessage.create({
+                    title: '掲載情報と言葉が一致しました！',
+                    imageUrl: url,
+                    matchedWords: matchedWordRegexps.map(
+                        (regexp) => regexp.registered
+                    )
+                })
+                data.to = userId
+
+                fetch(JSON.stringify(data), lineToken)
             }
         })
     })

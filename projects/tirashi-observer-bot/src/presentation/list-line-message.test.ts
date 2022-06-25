@@ -33,7 +33,6 @@ describe('ListLineMessage', () => {
         const listLineMessage = new TobListLineMessage()
 
         const data = listLineMessage.create(createDummyWords())
-        console.log(JSON.stringify(data))
 
         await instance.post(
             'https://api.line.me/v2/bot/message/broadcast',

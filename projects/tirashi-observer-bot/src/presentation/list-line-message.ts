@@ -31,21 +31,21 @@ function sliceWords<T>(words: T[]): T[][] {
     return result
 }
 
-function createLabel(word: CreateParameter[0]): string {
-    if (word.active) {
-        return '無効化'
-    }
+// function createLabel(word: CreateParameter[0]): string {
+//     if (word.active) {
+//         return '無効化'
+//     }
 
-    return '有効化'
-}
+//     return '有効化'
+// }
 
-function createDisplayText(word: CreateParameter[0]): string {
-    if (word.active) {
-        return ChatQucikReplyTexts.Inactivate(word.value)
-    }
+// function createDisplayText(word: CreateParameter[0]): string {
+//     if (word.active) {
+//         return ChatQucikReplyTexts.Inactivate(word.value)
+//     }
 
-    return ChatQucikReplyTexts.Activate(word.value)
-}
+//     return ChatQucikReplyTexts.Activate(word.value)
+// }
 
 // function createData(word: CreateParameter[0]): string {
 //     const type = word.active

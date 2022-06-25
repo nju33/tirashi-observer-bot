@@ -11,6 +11,6 @@
         "update": ": The latest deployment updates; clasp deploy -i$(yarn deployments | tail -n1 | cut -d' ' -f2)",
         "deployments": "clasp deployments",
         "open": "clasp open",
-        "runScript": "clasp run"
+        "clasp.run": "clasp run"
     }
 }

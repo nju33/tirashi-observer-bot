@@ -72,12 +72,41 @@ yarn
     2. Register the number of the same project from the settings page of the script editor. (You can open the script editor by `clasp open`)  
        ![](https://cloud.nju33.com/eXx2280ZyFwQSsOwwTXf+)
 4. Setup the script properties.
-    1. `cd projects/tirashi-observer-bot`
-    2. ```bash
-       clasp run _initScriptProperties \
-         --params '{"TIRASHI_URL": "url1,url2,..."}'
-       ```
-        If you want to search words from multiple flyers, you can specify a value separated by `,`.
+    1. Set `TIRASHI_URL` and `LINE_TOKEN`. For that like propose, like the below command is executed.
+        ```bash
+        yarn tob:$ _initScriptProperties \
+          --params '{"TIRASHI_URL": "url1,url2,...", "LINE_TOKEN": "..."}'
+          # ^ If you want to search words from multiple flyers,
+          #   you can specify a value separated by `,`.
+        ```
+
+### Note about TIRASHI_URL
+
+It cannot be used as the `TIRASHI_URL` that a url contains params. For example, as `https://example.com?key=aqwsedrftgyhujikolp`. When using like URL, Line throws an error `invalid uri scheme` at least.  
+And maybe, There are further conditions to occur errors.
+
+If feeling that the URL you want to use is complex, I recommend using the redirect feature of Firebase’s hosting. The URL is cleaned by using this.
+
+The feature’s how to use is in the below:
+
+1. Open `firebase.json`
+2. Add `hosting.redirects` in the below.
+    ```json
+    {
+        "hosting": {
+            "...": "...",
+            "redirects": [
+                {
+                    "source": "/cleaned-image-url",
+                    "destination": "https://example.com?key=aqwsedrftgyhujikolp",
+                    "type": 301
+                }
+            ]
+        }
+    }
+    ```
+3. `firebase deploy`
+4. Done. Now, you can access to `https://example.com?key=aqwsedrftgyhujikolp` via `<your-hosting-url>/cleaned-image-url`
 
 ## Code notes
 
