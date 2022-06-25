@@ -4,6 +4,8 @@ import type { UserSheetRepository } from '../domains/user'
 import type { WordsEachUsersSheetRepository } from '../domains/words-each-users'
 import { TobWordRegexp as _TobWordRegexp } from '../domains/regexp'
 import type { WordsMatchedMessage } from '../services/words-matched-message'
+import type { Fetch } from '../domains/fetch'
+import type { LineMessage } from '../services/line-message'
 
 const TobWordRegexp: typeof _TobWordRegexp =
     typeof _TobWordRegexp === 'undefined'
@@ -14,13 +16,18 @@ export function examineFlyersByWords({
     userSheetRepository,
     wordsEachUsersSheetRepository,
     fetch,
+    pushMessages,
     scriptProperties,
+    lineMessage,
     wordsMatchedMessage
 }: {
     userSheetRepository: UserSheetRepository
     wordsEachUsersSheetRepository: WordsEachUsersSheetRepository
-    fetch: PushMessages
     scriptProperties: ScriptProperties
+
+    fetch: Fetch<GoogleAppsScript.URL_Fetch.HTTPResponse>
+    pushMessages: PushMessages
+    lineMessage: LineMessage
     wordsMatchedMessage: WordsMatchedMessage
 }): void {
     const userIds = userSheetRepository.getAll()
@@ -34,7 +41,26 @@ export function examineFlyersByWords({
         const wordRegexps = wordValues.map((r) => new TobWordRegexp(r))
 
         tirashiUrls.forEach((url) => {
-            const imageBlob = UrlFetchApp.fetch(url).getBlob()
+            const fetchingBlobResponse = fetch(url, { method: 'get' }, true)
+            const fetchingBlobResponseCode =
+                fetchingBlobResponse.getResponseCode()
+            if (fetchingBlobResponseCode >= 500) {
+                const data = lineMessage.createWarning(
+                    'URL 先が原因でチラシの取得に失敗しました。このエラーが数日続くようであれば変数を見直してください。'
+                )
+                data.to = userId
+                pushMessages(JSON.stringify(data), lineToken)
+                return
+            } else if (fetchingBlobResponseCode >= 404) {
+                const data = lineMessage.createError(
+                    'URL 先にチラシがありません。変数を再設定してください。'
+                )
+                data.to = userId
+                pushMessages(JSON.stringify(data), lineToken)
+                return
+            }
+
+            const imageBlob = fetchingBlobResponse.getBlob()
             const text = convertImageIntoText(imageBlob)
             const matchedWordRegexps = wordRegexps.filter((wordRegexp) => {
                 return wordRegexp.test(text)
@@ -50,7 +76,7 @@ export function examineFlyersByWords({
                 })
                 data.to = userId
 
-                fetch(JSON.stringify(data), lineToken)
+                pushMessages(JSON.stringify(data), lineToken)
             }
         })
     })

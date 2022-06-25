@@ -1,13 +1,16 @@
-export function fetchText(
-    url: string,
-    data: {
-        method: GoogleAppsScript.URL_Fetch.HttpMethod
-        headers?: { [key: string]: string }
-        data: string
-    }
-): string {
+import type { Fetch } from '../domains/fetch'
+
+export const fetch: Fetch<GoogleAppsScript.URL_Fetch.HTTPResponse> = (
+    url,
+    data,
+    muteHttpExceptions
+) => {
     const fetchParams: Partial<GoogleAppsScript.URL_Fetch.URLFetchRequestOptions> =
-        { method: data.method, payload: data.data }
+        {
+            muteHttpExceptions,
+            method: data.method,
+            payload: data.data
+        }
 
     if (data.headers?.['Content-Type'] === 'application/json') {
         fetchParams.contentType = data.headers?.['Content-Type']
@@ -23,8 +26,5 @@ export function fetchText(
 
     const response = UrlFetchApp.fetch(url, fetchParams)
 
-    return response.getContentText()
+    return response
 }
-
-export type FetchText = typeof fetchText
-export type FetchTextData = Parameters<FetchText>[1]

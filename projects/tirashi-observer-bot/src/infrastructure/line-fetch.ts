@@ -1,8 +1,8 @@
-import { fetchText as _fetchText } from './fetch'
+import { fetch as _fetch } from './fetch'
 import type { ReplyMessages, PushMessages } from '../services/line-fetch'
 
-const fetchText: typeof _fetchText =
-    typeof _fetchText === 'undefined' ? exports.fetchText : _fetchText
+const fetch: typeof _fetch =
+    typeof _fetch === 'undefined' ? exports.fetch : _fetch
 
 /**
  * https://developers.line.biz/ja/docs/messaging-api/sending-messages/#reply-messages
@@ -10,14 +10,18 @@ const fetchText: typeof _fetchText =
 export const replyMessages: ReplyMessages = (data, bearerToken) => {
     const URL = 'https://api.line.me/v2/bot/message/reply'
 
-    return fetchText(URL, {
-        method: 'post',
-        headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${bearerToken}`
+    return fetch(
+        URL,
+        {
+            method: 'post',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${bearerToken}`
+            },
+            data
         },
-        data
-    })
+        false
+    ).getContentText()
 }
 
 /**
@@ -29,12 +33,16 @@ export const pushMessages: PushMessages = (
 ) => {
     const URL = 'https://api.line.me/v2/bot/message/push'
 
-    return fetchText(URL, {
-        method: 'post',
-        headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${bearerToken}`
+    return fetch(
+        URL,
+        {
+            method: 'post',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${bearerToken}`
+            },
+            data
         },
-        data
-    })
+        false
+    ).getContentText()
 }
