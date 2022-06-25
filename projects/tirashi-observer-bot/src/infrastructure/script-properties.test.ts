@@ -45,4 +45,29 @@ describe('TobScriptProperties', () => {
 
         expect(tirashiUrl).toEqual(expected)
     })
+
+    it('should get the folder id', () => {
+        const expected = 'asdf'
+        mockingGetProperty.mockReturnValueOnce(expected)
+
+        const properties = new TobScriptProperties(
+            tobScriptPropertiesValueFactory,
+            propertiesService
+        )
+
+        const folderId = properties.getFolderIdWhereFlyerDownloads()
+
+        expect(folderId).toEqual(expected)
+    })
+
+    it('should get the `root`', () => {
+        const properties = new TobScriptProperties(
+            tobScriptPropertiesValueFactory,
+            propertiesService
+        )
+
+        const folderId = properties.getFolderIdWhereFlyerDownloads()
+
+        expect(folderId).toEqual('root')
+    })
 })

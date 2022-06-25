@@ -43,3 +43,4 @@ vscode:
         - Orta.vscode-jest
         - christian-kohler.path-intellisense
         - znck.grammarly
+        - wmaurer.change-case

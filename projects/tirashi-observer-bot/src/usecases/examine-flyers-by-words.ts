@@ -61,7 +61,11 @@ export function examineFlyersByWords({
             }
 
             const imageBlob = fetchingBlobResponse.getBlob()
-            const text = convertImageIntoText(imageBlob)
+            const mimeType = (
+                fetchingBlobResponse.getHeaders() as { 'Content-Type': string }
+            )['Content-Type']
+            const parentId = scriptProperties.getFolderIdWhereFlyerDownloads()
+            const text = convertImageIntoText(imageBlob, mimeType, parentId)
             const matchedWordRegexps = wordRegexps.filter((wordRegexp) => {
                 return wordRegexp.test(text)
             })
@@ -82,12 +86,19 @@ export function examineFlyersByWords({
     })
 }
 
-function convertImageIntoText(imageAsBlob: GoogleAppsScript.Base.Blob): string {
+/**
+ *
+ * @param mimeType - such as `image/png`, `image/jpeg`
+ */
+function convertImageIntoText(
+    imageAsBlob: GoogleAppsScript.Base.Blob,
+    mimeType: string,
+    parentId: string
+): string {
     const fileMeta = {
+        parents: [{ id: parentId }],
         title: imageAsBlob.getName(),
-        mimeType: 'png'
-        // mimeType: GoogleAppsScript.Base.MimeType.PNG
-        // ^ When uncommenting the above, throw a type error around `fileMeta` of `Drive.Files.insert`
+        mimeType
     }
 
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
