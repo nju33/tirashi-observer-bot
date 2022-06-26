@@ -5,7 +5,7 @@ export interface SeparatingStringByComma {
 export abstract class ASeparatingStringByComma
     implements SeparatingStringByComma
 {
-    private readonly value: string[]
+    protected readonly value: string[]
 
     constructor(value: string) {
         this.value = value.split(',')
@@ -16,4 +16,19 @@ export abstract class ASeparatingStringByComma
     }
 }
 
-export class TirashiUrl extends ASeparatingStringByComma {}
+export class TirashiUrl extends ASeparatingStringByComma {
+    /**
+     * Get the `TIRASHI_URL` values with a timestamp
+     *
+     * When accesing the same flyer URL, there is a the flyer URL remain old
+     * due to the cache in the Line side.
+     * Therefore, a timestamp is added to each the end of URLs
+     *
+     * @returns URLs that added the timestamp at the end.
+     */
+    get(): string[] {
+        return this.value.map((url) => {
+            return [url, Date.now()].join(url.endsWith('/') ? '' : '/')
+        })
+    }
+}

@@ -1,6 +1,14 @@
 import { TobScriptProperties } from './script-properties'
 import { tobScriptPropertiesValueFactory } from '../domains/script-properties'
 
+function escapeStringRegexp(string: string): string {
+    if (typeof string !== 'string') {
+        throw new TypeError('Expected a string')
+    }
+
+    return string.replace(/[|\\{}()[\]^$+*?.]/g, '\\$&').replace(/-/g, '\\x2d')
+}
+
 describe('TobScriptProperties', () => {
     let propertiesService: GoogleAppsScript.Properties.PropertiesService
     let mockingGetProperty: jest.Mock<string, any[]>
@@ -43,7 +51,15 @@ describe('TobScriptProperties', () => {
 
         const tirashiUrl = properties.getTirashiUrl().get()
 
-        expect(tirashiUrl).toEqual(expected)
+        expect(tirashiUrl).toEqual(
+            expect.arrayContaining(
+                expected.map((item) => {
+                    // eslint-disable-next-line no-useless-escape
+                    const re = new RegExp(`${escapeStringRegexp(item)}\/\\d+`)
+                    return expect.stringMatching(re)
+                })
+            )
+        )
     })
 
     it('should get the folder id', () => {
