@@ -12,10 +12,10 @@ describe('TobWordRegexp#test', () => {
     })
 
     it('should match text with words', () => {
-        const wordRegexp = new TobWordRegexp('茨城県産&キャベツ')
+        const wordRegexp = new TobWordRegexp('茨城県産&キャベツ&６割引')
 
         const result = wordRegexp.test(
-            'あいうえお 茨城県産 キャベッ かきくけこ 安い安い'
+            'あいうえお 茨城県産 キャベッ 6割引 かきくけこ 安い安い'
         )
 
         expect(result).toBe(true)
