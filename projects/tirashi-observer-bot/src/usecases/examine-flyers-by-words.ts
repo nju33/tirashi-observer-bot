@@ -6,6 +6,8 @@ import { TobWordRegexp as _TobWordRegexp } from '../domains/regexp'
 import type { WordsMatchedMessage } from '../services/words-matched-message'
 import type { Fetch } from '../domains/fetch'
 import type { LineMessage } from '../services/line-message'
+import type { Drive } from '../domains/drive'
+import type { Document } from '../domains/document'
 
 const TobWordRegexp: typeof _TobWordRegexp =
     typeof _TobWordRegexp === 'undefined'
@@ -16,6 +18,8 @@ export function examineFlyersByWords({
     userSheetRepository,
     wordsEachUsersSheetRepository,
     fetch,
+    document,
+    drive,
     pushMessages,
     scriptProperties,
     lineMessage,
@@ -26,46 +30,65 @@ export function examineFlyersByWords({
     scriptProperties: ScriptProperties
 
     fetch: Fetch<GoogleAppsScript.URL_Fetch.HTTPResponse>
+    document: Document
+    drive: Drive<GoogleAppsScript.Base.Blob>
     pushMessages: PushMessages
     lineMessage: LineMessage
     wordsMatchedMessage: WordsMatchedMessage
 }): void {
     const userIds = userSheetRepository.getAll()
+    const lineToken = scriptProperties.getLineToken().get()
     const tirashiUrls = scriptProperties.getTirashiUrl().get()
+    const parentId = scriptProperties.getFolderIdWhereFlyerDownloads()
+
+    function convertImageIntoText(
+        imageBlob: GoogleAppsScript.Base.Blob,
+        mimeType: string
+    ): string {
+        const file = drive.insertFile(imageBlob, mimeType, parentId)
+        const text = document.getText(file.id)
+
+        file.delete()
+
+        return text
+    }
+
+    function sendMessageAbout404(userId: string): void {
+        const data = lineMessage.createError(
+            'URL 先にチラシがありません。変数を再設定してください。'
+        )
+        data.to = userId
+        pushMessages(JSON.stringify(data), lineToken)
+    }
+
+    function sendMessageAbout500Series(userId: string): void {
+        const data = lineMessage.createWarning(
+            'URL 先が原因でチラシの取得に失敗しました。このエラーが数日続くようであれば変数を見直してください。'
+        )
+        data.to = userId
+        pushMessages(JSON.stringify(data), lineToken)
+    }
 
     userIds.forEach((userId, index) => {
-        const lineToken = scriptProperties.getLineToken().get()
         // Separated by using comma
         const concatenatedString = wordsEachUsersSheetRepository.get(index)
         const wordValues = concatenatedString.split(',')
         const wordRegexps = wordValues.map((r) => new TobWordRegexp(r))
 
         tirashiUrls.forEach((url) => {
-            const fetchingBlobResponse = fetch(url, { method: 'get' }, true)
-            const fetchingBlobResponseCode =
-                fetchingBlobResponse.getResponseCode()
-            if (fetchingBlobResponseCode >= 500) {
-                const data = lineMessage.createWarning(
-                    'URL 先が原因でチラシの取得に失敗しました。このエラーが数日続くようであれば変数を見直してください。'
-                )
-                data.to = userId
-                pushMessages(JSON.stringify(data), lineToken)
-                return
-            } else if (fetchingBlobResponseCode >= 404) {
-                const data = lineMessage.createError(
-                    'URL 先にチラシがありません。変数を再設定してください。'
-                )
-                data.to = userId
-                pushMessages(JSON.stringify(data), lineToken)
-                return
+            const fetchedResponse = fetch(url, { method: 'get' }, true)
+            const fetchedResponseCode = fetchedResponse.getResponseCode()
+            if (fetchedResponseCode >= 500) {
+                return sendMessageAbout500Series(userId)
+            } else if (fetchedResponseCode >= 404) {
+                return sendMessageAbout404(userId)
             }
 
-            const imageBlob = fetchingBlobResponse.getBlob()
+            const imageBlob = fetchedResponse.getBlob()
             const mimeType = (
-                fetchingBlobResponse.getHeaders() as { 'Content-Type': string }
+                fetchedResponse.getHeaders() as { 'Content-Type': string }
             )['Content-Type']
-            const parentId = scriptProperties.getFolderIdWhereFlyerDownloads()
-            const text = convertImageIntoText(imageBlob, mimeType, parentId)
+            const text = convertImageIntoText(imageBlob, mimeType)
             const matchedWordRegexps = wordRegexps.filter((wordRegexp) => {
                 return wordRegexp.test(text)
             })
@@ -84,38 +107,4 @@ export function examineFlyersByWords({
             }
         })
     })
-}
-
-/**
- *
- * @param mimeType - such as `image/png`, `image/jpeg`
- */
-function convertImageIntoText(
-    imageAsBlob: GoogleAppsScript.Base.Blob,
-    mimeType: string,
-    parentId: string
-): string {
-    const fileMeta = {
-        parents: [{ id: parentId }],
-        title: imageAsBlob.getName(),
-        mimeType
-    }
-
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    const inserted = Drive.Files!.insert(fileMeta, imageAsBlob, {
-        convert: true,
-        ocr: true,
-        ocrLanguage: 'ja'
-    })
-
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    const file = DriveApp.getFileById(inserted.id!)
-
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    const document = DocumentApp.openById(inserted.id!)
-    const text = document.getBody().getText()
-
-    file.setTrashed(true)
-
-    return text
 }
