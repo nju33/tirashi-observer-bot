@@ -129,7 +129,7 @@ function createBubble(
                       type: 'text',
                       size: 'sm',
                       color: '#666666',
-                      text: '言葉をタップ（クリック）すると再び有効、もしくは無効にできます。',
+                      text: '言葉をタップ（クリック）すると有効化や無効化、もしくは削除できます。',
                       wrap: true
                   }
               ]
