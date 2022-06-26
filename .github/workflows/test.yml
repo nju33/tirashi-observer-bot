@@ -1,0 +1,27 @@
+name: Test
+
+on:
+    push:
+        branches:
+            - main
+    pull_request:
+        branches:
+            - main
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
+            - uses: actions/setup-node@v3
+              with:
+                  node-version: '16.x'
+                  cache: 'yarn'
+            - name: Preparing for test
+              shell: bash
+              run: |
+                  if [ ! -r ".jest/setup-process-env.js" ]; then
+                    touch .jest/setup-process-env.js
+                  fi
+            - run: yarn
+            - run: yarn test
