@@ -1,3 +1,3 @@
 # /https/
 
-It tries to construct Line Message. Mainly for looking actual design on Line.
+It tries to construct a Line Message. Mainly for looking at the actual design on Line.
