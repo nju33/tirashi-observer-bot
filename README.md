@@ -13,12 +13,17 @@ sequenceDiagram
 
 participant Cron as cron-job.org
 participant GAS as Google Apps Script
+participant Line
+actor you
+participant S as Supermarket
 
-loop Everyday around 1 a.m.
+loop Everyday around 8 a.m.
     Cron -) GAS: Fire `doGet`
 
-    opt Flyers contains some kind of registerd word
+    opt Flyers contains some registerd words
         GAS -) Line: Send a message about<br />whether the flyer contains words that you want
+        Line -) you: Inform
+        you -) S: Shipping
     end
 end
 ```
@@ -27,7 +32,9 @@ end
 
 1. You can register a word to want to observe.
 2. You can list registered words.
-3. You can delete a registered word.
+3. You can toggle the state of a registered word.
+4. You can delete a registered word.
+5. You can receive a message when encountering registered words on tirashis.
 
 ## Directory Structure
 
@@ -52,13 +59,13 @@ This project doesn't actually have such as `.clasp.json`. That's because It does
 
 As a solution to this, actually in my local, mounting `/projects/tirashi-observer-bot/` with my cloud storage. Then all of the files below here are synced with one from the cloud storage. (In short, such as `.clasp.json` exists on the cloud storage)
 
-## Preparing Workspace
+## Preparing For Workspace
 
 ```bash
 yarn
 ```
 
-## Preparing GAS
+## Preparing For GAS
 
 1. Install GAS
     ```bash
@@ -66,12 +73,65 @@ yarn
     ```
 2. Setup GAS to be able to use `clasp run`.  
    Please refer to [here](https://github.com/google/clasp/blob/master/docs/run.md#run)
-3. Setup a GAS project running `clasp create --rootDir projects/tirashi-observer-bot` or `clasp clone <scriptId> --rootDir projects/tirashi-observer-bot`, and then
-    1. Add `projectId` into the `.clasp.json`  
-       (In command, run `clasp setting projectId <projectId>` on the `tirashi-observer-bot/`)
-    2. Register the number of the same project from the settings page of the script editor. (You can open the script editor by `clasp open`)  
-       ![](https://cloud.nju33.com/eXx2280ZyFwQSsOwwTXf+)
-4. Setup the script properties.
+3. Create a `.clasp.json` on the `projects/tirashi-observer-bot/` directory, and edit it to be like this:
+    ```json
+    {
+        "scriptId": "<your-script-id>",
+        "projectId": "<your-project-id-on-gcp>",
+        "rootDir": "../..",
+        "fileExtension": "ts",
+        "filePushOrder": [
+            "../../projects/tirashi-observer-bot/src/constants.ts",
+            "../../projects/tirashi-observer-bot/src/error.ts",
+            "../../_user-function.ts",
+            "../../_properties.ts",
+            "../../_sheets.ts",
+            "../../appsscript.json",
+            "../../projects/tirashi-observer-bot/src/event.ts",
+            "../../projects/tirashi-observer-bot/src/domains/document.ts",
+            "../../projects/tirashi-observer-bot/src/domains/drive.ts",
+            "../../projects/tirashi-observer-bot/src/domains/fetch.ts",
+            "../../projects/tirashi-observer-bot/src/domains/folder-id-where-flyer-downloads.ts",
+            "../../projects/tirashi-observer-bot/src/domains/chat.ts",
+            "../../projects/tirashi-observer-bot/src/domains/token.ts",
+            "../../projects/tirashi-observer-bot/src/domains/line.ts",
+            "../../projects/tirashi-observer-bot/src/domains/regexp.ts",
+            "../../projects/tirashi-observer-bot/src/domains/list-line-message.ts",
+            "../../projects/tirashi-observer-bot/src/domains/script-properties.ts",
+            "../../projects/tirashi-observer-bot/src/domains/tirashi-url.ts",
+            "../../projects/tirashi-observer-bot/src/domains/to-sheet-value.ts",
+            "../../projects/tirashi-observer-bot/src/domains/words-each-users.ts",
+            "../../projects/tirashi-observer-bot/src/domains/user.ts",
+            "../../projects/tirashi-observer-bot/src/domains/word.ts",
+            "../../projects/tirashi-observer-bot/src/line.ts",
+            "../../projects/tirashi-observer-bot/src/services/line-fetch.ts",
+            "../../projects/tirashi-observer-bot/src/services/line-message.ts",
+            "../../projects/tirashi-observer-bot/src/services/chat-action-reply-message.ts",
+            "../../projects/tirashi-observer-bot/src/services/words-matched-message.ts",
+            "../../projects/tirashi-observer-bot/src/presentation/line-message.ts",
+            "../../projects/tirashi-observer-bot/src/presentation/list-line-message.ts",
+            "../../projects/tirashi-observer-bot/src/presentation/chat-action-reply-message.ts",
+            "../../projects/tirashi-observer-bot/src/presentation/words-matched-message.ts",
+            "../../projects/tirashi-observer-bot/src/infrastructure/document.ts",
+            "../../projects/tirashi-observer-bot/src/infrastructure/drive.ts",
+            "../../projects/tirashi-observer-bot/src/infrastructure/fetch.ts",
+            "../../projects/tirashi-observer-bot/src/infrastructure/line-fetch.ts",
+            "../../projects/tirashi-observer-bot/src/infrastructure/script-properties.ts",
+            "../../projects/tirashi-observer-bot/src/infrastructure/user-sheet.ts",
+            "../../projects/tirashi-observer-bot/src/infrastructure/word-sheet.ts",
+            "../../projects/tirashi-observer-bot/src/usecases/chat.ts",
+            "../../projects/tirashi-observer-bot/src/usecases/delete-registered-word.ts",
+            "../../projects/tirashi-observer-bot/src/usecases/activate-registered-word.ts",
+            "../../projects/tirashi-observer-bot/src/usecases/examine-flyers-by-words.ts",
+            "../../projects/tirashi-observer-bot/src/usecases/inactivate-registered-word.ts",
+            "../../projects/tirashi-observer-bot/src/usecases/list-registered-words.ts",
+            "../../projects/tirashi-observer-bot/src/usecases/register-word.ts"
+        ]
+    }
+    ```
+4. Also, register the number of the same project from the settings page of the script editor. (You can open the script editor by `clasp open`)  
+   ![](https://cloud.nju33.com/eXx2280ZyFwQSsOwwTXf+)
+5. Setup the script properties.
     1. Set `TIRASHI_URL` and `LINE_TOKEN`. For that like propose, like the below command is executed.
         ```bash
         yarn tob:$ _initScriptProperties \
@@ -79,15 +139,18 @@ yarn
           # ^ If you want to search words from multiple flyers,
           #   you can specify a value separated by `,`.
         ```
+    2. If you want to change where flyers are downloaded tempolary (for any destructive issues), you can similarly set the `TEMPORARY_DIRECTORY_TO_DOWNLOAD_FLYER`.
 
 ### Note about TIRASHI_URL
 
-It cannot be used as the `TIRASHI_URL` that a url contains params. For example, as `https://example.com?key=aqwsedrftgyhujikolp`. When using like URL, Line throws an error `invalid uri scheme` at least.  
+<!-- It cannot be used as the `TIRASHI_URL` that a URL contains params. For example, as `https://example.com?key=aqwsedrftgyhujikolp`. When using like URL, Line throws an error `invalid uri scheme` at least.
 And maybe, There are further conditions to occur errors.
 
-If feeling that the URL you want to use is complex, I recommend using the redirect feature of Firebase’s hosting. The URL is cleaned by using this.
+If feeling that the URL you want to use is complex, I recommend using the redirect feature of Firebase’s hosting. The URL is cleaned by using this. -->
 
-The feature’s how to use is in the below:
+When Line gets a flyer image, its content is returned from the cache after the second time; therefore, changing the URL every time is needed.
+
+To take the measure of this, Firebase’s hosting feature is used in the like below:
 
 1. Open `firebase.json`
 2. Add `hosting.redirects` in the below.
@@ -97,7 +160,7 @@ The feature’s how to use is in the below:
             "...": "...",
             "redirects": [
                 {
-                    "source": "/cleaned-image-url",
+                    "source": "/cleaned-image-url/**",
                     "destination": "https://example.com?key=aqwsedrftgyhujikolp",
                     "type": 301
                 }
@@ -106,7 +169,14 @@ The feature’s how to use is in the below:
     }
     ```
 3. `firebase deploy`
-4. Done. Now, you can access to `https://example.com?key=aqwsedrftgyhujikolp` via `<your-hosting-url>/cleaned-image-url`
+4. Done. Now, you can access to `https://example.com?key=aqwsedrftgyhujikolp` via `<your-hosting-url>/cleaned-image-url/123456789`
+
+#### Note
+
+You don't include the last directory (`123456789` as mentioned above) in the TIRASHI_URL.
+
+-   👍 `<your-hosting-url>/cleaned-image-url`
+-   👎 `<your-hosting-url>/cleaned-image-url/123456789`
 
 ## Code notes
 
@@ -154,6 +224,32 @@ firebase deploy
 
 Icons are placed on the `/public/tinified/`; also, all of the icons (png) were minified by https://tinypng.com/.
 
+## Run Scripts
+
+### tob:
+
+Run a script that is defined on the `tirashi-observer-bot` workspace.
+
+#### push
+
+Push local codes to the remote project.
+
+#### deployments
+
+Can list deployments of the remote project.
+
+#### deploy
+
+Create a new deployment by the state at the time.
+
+#### update
+
+Update the newest deployment by the state at the time.
+
+### tob:$
+
+Run codes on the remote project from local.
+
 ## Test
 
 This project depends on [Jest](https://jestjs.io/)](https://jestjs.io/) testing framework.
@@ -167,47 +263,3 @@ This project depends on [Jest](https://jestjs.io/)](https://jestjs.io/) testing 
 Some test cases have `.skip`. This prevents sending an actual request to another.
 
 If testing them, remove it first before you run `yarn test`; also, you reattach `.skip` to one when finished before `git push`.
-
-## Classes
-
-```mermaid
-classDiagram
-
-class LineMessage {
-    +Success(memssage: string)$
-    +Warning(message: string)$
-    +Error(message: string)$
-}
-
-class ListLineMessage {
-    +create(words: Word[])
-}
-
-class Repository~T~ {
-    <<interface>>
-    insert(item~T~)
-    list()
-    delete(item~T~)
-}
-
-class UseCase
-<<interface>> UseCase
-
-class ToSheetValue {
-    <<interface>>
-    +toArray() any[]
-    +toString()
-}
-
-class Word {
-    <<interface>>
-    +value: string
-    +active: boolean
-}
-
-
-Repository <|.. WordSheet
-Repository "n" o-- "1" UseCase
-ToSheetValue <|-- Word
-Word "1..n" <.. "1" ListLineMessage
-```
