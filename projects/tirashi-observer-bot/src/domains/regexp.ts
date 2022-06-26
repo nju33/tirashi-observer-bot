@@ -92,11 +92,11 @@ export class TobWordRegexp implements WordRegexp {
                     return item == null ? chunk.charAt(i) : item
                 })
                 .map((item) => {
-                    return Array.isArray(item) ? `[${item.join('')}]` : item
+                    return Array.isArray(item) ? `(?:${item.join('|')})` : item
                 })
                 .join('')
 
-            return new RegExp(`(?:${pattern})+`)
+            return new RegExp(pattern)
         })
     }
 

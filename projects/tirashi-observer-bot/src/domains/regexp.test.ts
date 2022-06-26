@@ -21,7 +21,7 @@ describe('TobWordRegexp#test', () => {
         expect(result).toBe(true)
     })
 
-    it.only('should not match text with words', () => {
+    it('should not match text with words', () => {
         const wordRegexp = new TobWordRegexp('茨城県産&キャベツ')
 
         const result = wordRegexp.test(
