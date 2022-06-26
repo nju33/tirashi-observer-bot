@@ -20,4 +20,14 @@ describe('TobWordRegexp#test', () => {
 
         expect(result).toBe(true)
     })
+
+    it.only('should not match text with words', () => {
+        const wordRegexp = new TobWordRegexp('茨城県産&キャベツ')
+
+        const result = wordRegexp.test(
+            'あいうえお キャベッ かきくけこ 安い安い'
+        )
+
+        expect(result).toBe(false)
+    })
 })
