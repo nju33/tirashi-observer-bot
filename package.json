@@ -7,14 +7,16 @@
         "build": "tsc",
         "test": "jest",
         "tob:": "yarn workspace tirashi-observer-bot",
-        "tob:$": "yarn workspace tirashi-observer-bot run clasp.run"
+        "tob:$": "yarn workspace tirashi-observer-bot run clasp.run",
+        "postinstall": "husky install"
     },
     "devDependencies": {
-        "@aryli/create-that.preset": "0.0.5",
+        "@aryli/create-that.preset": "0.0.6",
         "@types/google-apps-script": "1.0.48",
         "@types/jest": "^28.1.2",
         "@types/rewire": "^2.5.28",
         "axios": "^0.27.2",
+        "husky": "^8.0.0",
         "jest": "^28.1.1",
         "npm-run-all": "^4.1.5",
         "rewire": "^6.0.0",

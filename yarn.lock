@@ -91,9 +91,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@aryli/create-that.eslint.with-typescript@npm:0.0.5":
-  version: 0.0.5
-  resolution: "@aryli/create-that.eslint.with-typescript@npm:0.0.5::__archiveUrl=https%3A%2F%2Fnode.bit.cloud%2F%40aryli%2Fcreate-that.eslint.with-typescript%2F-%2F%40aryli-create-that.eslint.with-typescript-0.0.5.tgz"
+"@aryli/create-that.eslint.with-typescript@npm:0.0.6":
+  version: 0.0.6
+  resolution: "@aryli/create-that.eslint.with-typescript@npm:0.0.6::__archiveUrl=https%3A%2F%2Fnode.bit.cloud%2F%40aryli%2Fcreate-that.eslint.with-typescript%2F-%2F%40aryli-create-that.eslint.with-typescript-0.0.6.tgz"
   dependencies:
     "@typescript-eslint/eslint-plugin": 5.28.0
     "@typescript-eslint/parser": 5.28.0
@@ -102,32 +102,32 @@ __metadata:
     eslint-plugin-tsdoc: 0.2.16
   peerDependencies:
     typescript: ^4.7.3
-  checksum: 3e8f561267c8b884c624cf4e8adec0e46b7ab409df35ec66a71db126a693ac474d51a81855bf2f906c10e6396b0ca34ee3cff2d87cf40aca0f4449607ac79689
+  checksum: ccd007310fcb2756f173fd7bf52a4ad94123437dd40a2e505474fee401d8b5b89369cffb0f2c14a9241ca5607dd5c5712c62f5ee280c6ae6ad15d0d6e4d52bfe
   languageName: node
   linkType: hard
 
-"@aryli/create-that.lint-staged.config@npm:0.0.3":
-  version: 0.0.3
-  resolution: "@aryli/create-that.lint-staged.config@npm:0.0.3::__archiveUrl=https%3A%2F%2Fnode.bit.cloud%2F%40aryli%2Fcreate-that.lint-staged.config%2F-%2F%40aryli-create-that.lint-staged.config-0.0.3.tgz"
+"@aryli/create-that.lint-staged.config@npm:0.0.4":
+  version: 0.0.4
+  resolution: "@aryli/create-that.lint-staged.config@npm:0.0.4::__archiveUrl=https%3A%2F%2Fnode.bit.cloud%2F%40aryli%2Fcreate-that.lint-staged.config%2F-%2F%40aryli-create-that.lint-staged.config-0.0.4.tgz"
   dependencies:
     lint-staged: 13.0.1
-  checksum: 72a69bb95e25cb1159a991cb8d2d1b25219345b4180c6b2981012bf0891a806839b350bfbcbced4458ac856f3a7bee2730c906672c3f5a2786fa8124ba154158
+  checksum: 55ee4d5b098a0661e79dd4bee91d0511faadec273493bc6c8260865d90bb296d358d192b3a800bddc6bcc11fa841e48af63f075db211b75a1432fc76b6d56a5c
   languageName: node
   linkType: hard
 
-"@aryli/create-that.preset@npm:0.0.5":
-  version: 0.0.5
-  resolution: "@aryli/create-that.preset@npm:0.0.5::__archiveUrl=https%3A%2F%2Fnode.bit.cloud%2F%40aryli%2Fcreate-that.preset%2F-%2F%40aryli-create-that.preset-0.0.5.tgz"
+"@aryli/create-that.preset@npm:0.0.6":
+  version: 0.0.6
+  resolution: "@aryli/create-that.preset@npm:0.0.6::__archiveUrl=https%3A%2F%2Fnode.bit.cloud%2F%40aryli%2Fcreate-that.preset%2F-%2F%40aryli-create-that.preset-0.0.6.tgz"
   dependencies:
     "@aryli/create-that.commitlint.config": 0.0.4
     "@aryli/create-that.eslint.browser": 0.0.1
     "@aryli/create-that.eslint.config": 0.0.4
     "@aryli/create-that.eslint.node": 0.0.1
     "@aryli/create-that.eslint.react": 0.0.1
-    "@aryli/create-that.eslint.with-typescript": 0.0.5
-    "@aryli/create-that.lint-staged.config": 0.0.3
+    "@aryli/create-that.eslint.with-typescript": 0.0.6
+    "@aryli/create-that.lint-staged.config": 0.0.4
     "@aryli/create-that.prettier.config": 0.0.5
-  checksum: cdec290e37b1933998b4ed6ddc51b2767472b08193601a57da0833d6c792a782d2d78e93684f6490f25dbb40a74f5b078316134f86421b0c75cb22d7b03eba38
+  checksum: 9162a6651553557092a5024131125f74f6938d1443074f91529b99e2ad4eca0363905e211f7e8b071728a475e483b5a748397a196dba2f7fd00e70f6a587cd99
   languageName: node
   linkType: hard
 
@@ -3804,6 +3804,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"husky@npm:^8.0.0":
+  version: 8.0.1
+  resolution: "husky@npm:8.0.1"
+  bin:
+    husky: lib/bin.js
+  checksum: 943a73a13d0201318fd30e83d299bb81d866bd245b69e6277804c3b462638dc1921694cb94c2b8c920a4a187060f7d6058d3365152865406352e934c5fff70dc
+  languageName: node
+  linkType: hard
+
 "iconv-lite@npm:^0.6.2":
   version: 0.6.3
   resolution: "iconv-lite@npm:0.6.3"
@@ -6088,11 +6097,12 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
-    "@aryli/create-that.preset": 0.0.5
+    "@aryli/create-that.preset": 0.0.6
     "@types/google-apps-script": 1.0.48
     "@types/jest": ^28.1.2
     "@types/rewire": ^2.5.28
     axios: ^0.27.2
+    husky: ^8.0.0
     jest: ^28.1.1
     npm-run-all: ^4.1.5
     rewire: ^6.0.0

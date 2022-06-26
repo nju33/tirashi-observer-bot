@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+PATH="$(dirname -- "$(dirname -- "$0")")/node_modules/.bin:$PATH"
+
+lint-staged
+if [ ! "$TEST_SKIP" = "true" ]; then
+    yarn test
+fi
