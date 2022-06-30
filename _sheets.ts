@@ -56,7 +56,7 @@ function _initUsers(
 
     sheet
         .getRange(1, 1)
-        .setFormula('=sort(unique(index(Words!B:D, 0, 2)), 1, true)')
+        .setFormula('=unique(index(Words!B2:D, 0, 2))')
 }
 
 function _initMirroredWordsButIgnoringA(
