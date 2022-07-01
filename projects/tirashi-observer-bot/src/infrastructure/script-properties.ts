@@ -5,16 +5,11 @@ import type {
 } from '../domains/script-properties'
 import type { SeparatingStringByComma } from '../domains/tirashi-url'
 import { InfrastructureError as _InfrastructureError } from '../error'
-import { createFolderIdWhereFlyerDownloads as _createFolderIdWhereFlyerDownloads } from '../domains/folder-id-where-flyer-downloads'
 
 const InfrastructureError: typeof _InfrastructureError =
     typeof _InfrastructureError === 'undefined'
         ? exports.InfrastructureError
         : _InfrastructureError
-const createFolderIdWhereFlyerDownloads: typeof _createFolderIdWhereFlyerDownloads =
-    typeof _createFolderIdWhereFlyerDownloads === 'undefined'
-        ? exports.createFolderIdWhereFlyerDownloads
-        : _createFolderIdWhereFlyerDownloads
 
 export class TobScriptProperties implements ScriptProperties {
     static readonly KEYS = Object.freeze({

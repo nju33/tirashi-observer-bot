@@ -40,7 +40,7 @@ describe('TobScriptProperties', () => {
         const expected = [
             'https://....xyz',
             'https://....com',
-            'https://....guru'
+            'https://....guru/'
         ]
         mockingGetProperty.mockReturnValueOnce(expected.join(','))
 
@@ -54,8 +54,11 @@ describe('TobScriptProperties', () => {
         expect(tirashiUrl).toEqual(
             expect.arrayContaining(
                 expected.map((item) => {
-                    // eslint-disable-next-line no-useless-escape
-                    const re = new RegExp(`${escapeStringRegexp(item)}\/\\d+`)
+                    const re = new RegExp(
+                        // The meaning of `Array#replace` is to delete `/` of the  end of the `guru/`.
+                        // eslint-disable-next-line no-useless-escape
+                        `${escapeStringRegexp(item.replace(/\/$/, ''))}\/\\d+`
+                    )
                     return expect.stringMatching(re)
                 })
             )
