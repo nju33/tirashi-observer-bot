@@ -1,5 +1,7 @@
 # Tirashi Observer Bot
 
+[![Test](https://github.com/nju33/tirashi-observer-bot/actions/workflows/test.yml/badge.svg)](https://github.com/nju33/tirashi-observer-bot/actions/workflows/test.yml)
+
 Tirashi Observer is a bot by GAS: this can observe that you want to search words from given flyers.
 
 ## Dependencies
