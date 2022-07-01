@@ -113,6 +113,22 @@ export function examineFlyersByWords({
             to: userId,
             messages: messages.flat()
         }
-        pushMessages(JSON.stringify(data), lineToken)
+
+        // Return, if nothing matched
+        // Line: `Size must be between 1 and 5","property":"messages"`
+        if (data.messages.length === 0) {
+            return
+        }
+
+        // If the app tried to push a message had a non-exist user id
+        // Line returns an error `{ "message": "Failed to send messages" }`
+        //
+        // It’s fine that the program retains running even if the error is occured; but the log is displayed.
+        try {
+            pushMessages(JSON.stringify(data), lineToken)
+        } catch (error) {
+            console.error((error as Error).message)
+            console.log(JSON.stringify(data))
+        }
     })
 }
