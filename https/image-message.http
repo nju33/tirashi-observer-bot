@@ -2,6 +2,7 @@
 
 @token = {{$dotenv %LINE_TOKEN}}
 @endpoint = https://api.line.me/v2/bot/message/broadcast
+# @endpoint = https://api.line.me/v2/bot/message/push
 
 ###
 
