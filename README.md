@@ -4,6 +4,9 @@
 
 Tirashi Observer is a bot by GAS: this can observe that you want to search words from given flyers.
 
+[![Tirashi Observer Bot の紹介](http://img.youtube.com/vi/RuEmiDFWPGQ/0.jpg)]
+(http://www.youtube.com/watch?v=RuEmiDFWPGQ)
+
 ## Dependencies
 
 1. [cron-job.org](https://console.cron-job.org/)
