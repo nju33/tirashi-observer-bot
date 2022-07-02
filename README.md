@@ -2,10 +2,11 @@
 
 [![Test](https://github.com/nju33/tirashi-observer-bot/actions/workflows/test.yml/badge.svg)](https://github.com/nju33/tirashi-observer-bot/actions/workflows/test.yml)
 
-Tirashi Observer is a bot by GAS: this can observe that you want to search words from given flyers.
+Tirashi Observer Bot is a Line bot by GAS: this allows you to observe words that you want to from given flyers.
 
-[![Tirashi Observer Bot の紹介](http://img.youtube.com/vi/RuEmiDFWPGQ/0.jpg)]
-(http://www.youtube.com/watch?v=RuEmiDFWPGQ)
+## Youtube Video for introducing
+
+[![Tirashi Observer Bot の紹介](http://img.youtube.com/vi/RuEmiDFWPGQ/0.jpg)](http://www.youtube.com/watch?v=RuEmiDFWPGQ)
 
 ## Dependencies
 
