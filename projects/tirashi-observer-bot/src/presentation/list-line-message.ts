@@ -1,14 +1,5 @@
 import type { JsonObject } from 'type-fest'
-import { ChatQucikReplyTexts as _ChatQucikReplyTexts } from '../domains/chat'
 import type { ListLineMessage } from '../domains/list-line-message'
-import { EVENT_TYPES as _EVENT_TYPES } from '../event'
-
-const ChatQucikReplyTexts: typeof _ChatQucikReplyTexts =
-    typeof _ChatQucikReplyTexts === 'undefined'
-        ? exports.ChatQucikReplyTexts
-        : _ChatQucikReplyTexts
-const EVENT_TYPES: typeof _EVENT_TYPES =
-    typeof _EVENT_TYPES === 'undefined' ? exports.EVENT_TYPES : _EVENT_TYPES
 
 type CreateParameter = Parameters<ListLineMessage['create']>[0]
 type CreateReturnType = ReturnType<ListLineMessage['create']>
@@ -31,30 +22,6 @@ function sliceWords<T>(words: T[]): T[][] {
     return result
 }
 
-// function createLabel(word: CreateParameter[0]): string {
-//     if (word.active) {
-//         return '無効化'
-//     }
-
-//     return '有効化'
-// }
-
-// function createDisplayText(word: CreateParameter[0]): string {
-//     if (word.active) {
-//         return ChatQucikReplyTexts.Inactivate(word.value)
-//     }
-
-//     return ChatQucikReplyTexts.Activate(word.value)
-// }
-
-// function createData(word: CreateParameter[0]): string {
-//     const type = word.active
-//         ? EVENT_TYPES.inactivateWord
-//         : EVENT_TYPES.activateWord
-//
-//     return JSON.stringify({ type, payload: { word } })
-// }
-
 function createToggleIconContent(word: CreateParameter[0]): JsonObject {
     const toggleIcon = word.active
         ? 'https://tirashi-observer-bot.web.app/tinified/toggle-on.png'
@@ -73,19 +40,10 @@ function createLine(
     isOdd: boolean
 ): CreateReturnType {
     const oddProperties = isOdd ? { backgroundColor: '#eeeeee' } : {}
-    // const action = {
-    //     type: 'postback',
-    //     label: createLabel(word),
-    //     displayText: createDisplayText(word),
-    //     data: createData(word)
-    // }
     const action = {
         type: 'message',
-        // label: createLabnel(word),
-        // text: createDisplayText(word)
         label: word.value,
         text: word.value
-        // data: createData(word)
     }
     const lineText = {
         type: 'text',

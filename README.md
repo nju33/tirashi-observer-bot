@@ -89,7 +89,6 @@ yarn
             "../../_properties.ts",
             "../../_sheets.ts",
             "../../appsscript.json",
-            "../../projects/tirashi-observer-bot/src/event.ts",
             "../../projects/tirashi-observer-bot/src/domains/document.ts",
             "../../projects/tirashi-observer-bot/src/domains/drive.ts",
             "../../projects/tirashi-observer-bot/src/domains/fetch.ts",
